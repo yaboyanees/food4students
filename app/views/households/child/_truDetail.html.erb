@@ -1,0 +1,33 @@
+
+	<div class="truCalc">
+		<h3>Does <span id="kidName8"></span> Get Money From Trust?</h3>
+		<h4>
+			Gets $<input type="text" name="tru" value="" placeholder="100">
+			<select id="truFreqVal">
+				<option value="52">weekly</option>
+				<option value="26">every two weeks</option>
+				<option value="24">twice a month</option>
+				<option value="12">monthly</option>
+			</select>
+			<br /><br />	
+			which is roughly $<input type="text" name="truTotal" id="truTotal" value="" style="border: none;" readonly> annually
+		</h4><br />	
+		<%= c.hidden_field :tru, :id=>"truTotal" %>
+		<a id="noTru" class="noTru">No Trust Money</a><a id="keepItMoving" class="nextBtn">Done</a> 
+	</div>
+
+
+	<div class="payCalcComplete" style="display:none;">
+		<h3>Great <%= @household.fillerName %>, we got all of it!</h3>
+		<%= c.submit "Add to Family", class: "nextBtn" %>
+	</div>
+	
+<script>
+
+	$("#truFreqVal").change(function() {
+		var a = $('input[name="tru"]').val();
+		var b = $(this).val();
+		$('input[id="truTotal"]').val(a * b);
+	});
+	
+</script>

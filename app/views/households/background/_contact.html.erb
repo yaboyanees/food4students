@@ -1,0 +1,36 @@
+<!-- Modal window -->
+<div id="cModal" style="display:none;">
+<p class="explanationB">
+	You are not required to provide. If you can provide, please do 
+	so like the example:
+</p>
+
+<p class="inputC">
+	760-555-5555
+</p>
+<p class="inputB">
+	merzianees@gmail.com
+</p>
+
+ <p class="why">Why?</p>
+ <p class="whyDetails">
+	This helps us contact you when we determine eligibility for a household. The less you share with us
+	the harder it is to track you down.
+ </p>
+</div>
+
+<!-- Link to open the modal -->
+<p class="emojiHelp"><a href="#cModal" rel="modal:open">&#128533;why?</a></p>
+
+<h3>Great! How can we reach you for questions? Leave blank if not able to provide at this time.</h3>
+
+    <div class="group">      
+    	<%= f.text_field :phone, :autofocus => true %>
+    	<span class="bar"></span>
+    	<label>Phone</label>
+	</div>
+    <div class="group">      
+    	<%= f.email_field :email, :size=>"25", :maxlength=>"35" %>
+    	<span class="bar"></span>
+    	<label>Email</label>
+	</div>

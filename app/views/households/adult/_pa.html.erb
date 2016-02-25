@@ -1,0 +1,28 @@
+	<h3>Does <span id="adultName7"><%= @household.fillerName %></span> Get Public Assistance such as SSI, Disability, Unemployement?</h3>
+
+	<div class="paCalc">
+			<h4>
+				Earns $<input type="text" name="pa" value="" placeholder="100">
+				<select id="paFreqVal">
+					<option value="52">weekly</option>
+					<option value="26">every two weeks</option>
+					<option value="24">twice a month</option>
+					<option value="12">monthly</option>
+				</select>
+				<br /><br />	
+				which is roughly a gross annual income of $<input type="text" name="paTotal" id="paTotal" value="" style="border: none;" readonly>
+			</h4><br />	
+		<%= a.hidden_field :pa, :id=>"paTotal" %>
+		<a id="moveSlideRight" class="nopa" href="#1/8">Does Not Apply</a> <a id="moveSlideRight" class="nextBtn" href="#1/8">Next</a>
+	</div>
+
+
+<script>
+
+	$("#paFreqVal").change(function() {
+		var a = $('input[name="pa"]').val();
+		var b = $(this).val();
+		$('input[id="paTotal"]').val(a * b);
+	});
+	
+</script>

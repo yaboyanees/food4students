@@ -1,0 +1,14 @@
+<div id="myContainer">
+	<div class="section" id="section5">
+		<%= form_for(@optional) do |o| %>
+		<div class="slide">
+			<div class="qArea">
+				<%= render 'households/optional/share', o: o %>
+			</div>
+		</div>
+		<% end %>
+	</div>
+	<div id="btmProgress">
+		<%= render 'households/optional/progress'%>
+	</div>
+</div>

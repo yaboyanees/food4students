@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hotness</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+	<%= yield %>
+	
+<script>
+
+	$(document).ready(function() {
+
+		function initialization(){
+			$('#myContainer').fullpage({
+				sectionsColor: ['#4BBFC3', '#4BBFC3', '#4BBFC3', '#4BBFC3', '#4BBFC3'],
+				anchors: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11' ],
+				resize: false,
+				animateAnchor:false,
+				scrollOverflow: true,
+				loopHorizontal:false,
+				autoScrolling:true,
+				responsive: 900,
+				fitSection: false,
+				fixedElements: '#header, #btmProgress',
+				menu: '#menu',
+				navigation:false,
+				continuousVertical:false,
+				css3: true,
+			});
+		}
+
+		//fullPage.js initialization
+		initialization();
+
+
+		$('#moveSectionUp').click(function(e){
+			e.preventDefault();
+			$.fn.fullpage.moveSectionUp();
+		});
+
+		$('#moveUp').click(function(e){
+			e.preventDefault();
+			$.fn.fullpage.moveSectionUp();
+		});
+		
+		$('#moveSlideRight').click(function(e){
+			e.preventDefault();
+			$.fn.fullpage.moveSlideRight();
+		});		
+
+		$('#moveSectionDown').click(function(e){
+			e.preventDefault();
+			$.fn.fullpage.moveSectionDown();
+		});
+
+		$('#silentMoveTo').click(function(e){
+			e.preventDefault();
+			$.fn.fullpage.silentMoveTo();
+		});
+		
+	});
+	
+	$('form').on("keypress", function (e) {
+		if(e.keyCode == 13) {  // the enter key code
+	 		e.preventDefault();
+			$('.sendBtn').click();
+	  	}
+	});   
+
+	// make tab key navigate slide right
+	$('body').on("keydown", function (e) {
+		if (e.keyCode == 9) {
+			e.preventDefault();
+			$.fn.fullpage.moveSlideRight();
+		}
+	});
+	
+</script>
+
+</body>
+</html>

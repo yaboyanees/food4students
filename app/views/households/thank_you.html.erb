@@ -1,0 +1,24 @@
+<div class="splashPage">
+	<div id="navi">
+		<h4>
+			<%= link_to image_tag("logo.png"), root_path %>
+		</h4>
+		<span class="legal"><%= link_to "Our Promise", legal_index_path, class:"promise" %></span>
+	</div>
+	
+	<div id="thanks"><br/>
+		<p class="bubble-done-1">Well done <%= @household.fillerName %>&#128079;! You successfully completed
+		the application.</p>
+		<p class="bubble-done-2"> 
+			We will be in touch with you soon using the information provided in the form.
+		</p>
+		<p class="bubble-done-3">
+			You can view/save pdf or edit the application below&#128071;
+		</p>
+		
+		<br /><br /><br />
+		<%= link_to "Edit Application", household_path(@household), class: "ctaButtonOr" %>
+		<%= link_to "View Application", household_path(@household, :format => :pdf), class: "ctaButton" %>		
+	</div>	
+
+</div>

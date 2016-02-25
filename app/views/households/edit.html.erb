@@ -1,0 +1,26 @@
+<!-- START HOUSEHOLD SECTION -->
+<div id="myContainer">
+<%= form_for(@household) do |f| %>
+	<div class="section" id="section2">
+	    <div class="slide">
+	    	<div class="qArea">
+	    		<%= render 'households/household/address', f: f %>
+	    	</div>
+	    </div>
+	    <div class="slide">
+	    	<div class="qArea">
+	    		<%= render 'households/household/last4', f: f %>
+	    	</div>
+	    </div>
+	    <div class="slide">
+	    	<div class="qArea">
+	    		<%= render 'households/household/case', f: f %>
+	    	</div>
+	    </div>
+	</div>
+	<div id="btmProgress">
+		<%= render 'households/household/progress'%>
+	</div>
+<% end %>
+</div>
+

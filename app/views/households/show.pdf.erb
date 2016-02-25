@@ -1,0 +1,306 @@
+<!-- Give ability to style output of pdf -->
+<%= wicked_pdf_stylesheet_link_tag "pdf" -%>
+
+<div id="pdf">
+	<% if @household.casenum.present? %>
+
+		<div class="child">
+			<h2 class="step">Step 1</h2>
+			<h2 class="details">
+				List ALL Household Members who are infants, children, and 
+				students up to and including grade 12
+			</h2>
+			
+			<table class="children">
+			  <tr>
+				<th>Child's First Name</th>
+				<th>MI</th>
+				<th>Child's Last Name</th>
+				<th>Student</th>
+				<th>Foster</th>
+				<th>Homless/Migrant/Runaway</th>
+				<th>Head Start</th>
+			  </tr>
+		  
+			  <% @children.each do |c| %>
+			  <tr>
+				<td width="19%"><%= c.nameSplit[0]  %></td>
+				<td><%= c.nameSplit[1]  %></td>
+				<td width="19%"><%= c.nameSplit[2]  %></td>
+				<td><%= human_boolean(c.student) %></td>
+				<td><%= human_boolean(c.foster) %></td>
+				<td><%= human_boolean(c.hmr) %></td>
+				<td><%= human_boolean(c.hs) %></td> 
+			  </tr>		
+			  <% end %>	  		  
+			</table>
+				
+		</div>
+
+
+		<div class="assistance">
+			<h2 class="step">Step 2</h2>
+			<h2 class="details">
+				Do any Household Members currently participate in one or more of 
+				the following assistance programs: SNAP, TANF, or FDPIR?  
+			</h2>	
+			<p class="case">Case Number: 
+				<%= @household.casenum %>
+			</p>
+			<br />
+		</div>
+
+
+		<div class="income">
+			<h2 class="step">Step 3</h2>
+			<h2 class="details">
+				Report Income for ALL Household Members  
+			</h2>
+			<h2 class="NR">NOT REQUIRED/APPLICABLE</h2>
+		</div>
+
+
+	<% else %>
+		<div class="child">
+			<h2 class="step">Step 1</h2>
+			<h2 class="details">
+				List ALL Household Members who are infants, children, and 
+				students up to and including grade 12
+			</h2>		
+			<table class="children">
+			  <tr>
+				<th>Child's First Name</th>
+				<th>MI</th>
+				<th>Child's Last Name</th>
+				<th>Pay</th>
+				<th>Benefits</th>
+				<th>Spending Money</th>
+				<th>Student</th>
+				<th>Foster</th>
+				<th>Homless/Migrant/Runaway</th>
+				<th>Head Start</th>
+			  </tr>
+	
+			  <!-- Calculate total income for children -->
+			  <% childIncomeTotal = 0 %>		  
+			  <% @children.each do |c| %>
+			  <tr>
+				<td width="19%"><%= c.nameSplit[0]  %></td>
+				<td><%= c.nameSplit[1]  %></td>
+				<td width="19%"><%= c.nameSplit[2]  %></td>
+				<td><%= number_to_currency(c.payCalc[0], :precision => 0)  %></td>
+				<td><%= number_to_currency(c.payCalc[1], :precision => 0)  %></td>
+				<td><%= number_to_currency(c.payCalc[2], :precision => 0)  %></td>
+				<td><%= human_boolean(c.student) %></td>
+				<td><%= human_boolean(c.foster) %></td>
+				<td><%= human_boolean(c.hmr) %></td>
+				<td><%= human_boolean(c.hs) %></td>
+				<% cPay = c.payCalc[3] %>
+				<% childIncomeTotal += cPay %>  
+			  </tr>		
+			  <% end %>	  		  
+			</table>
+			
+			<table class="total">
+				<tr>
+					<th>Children Income: <%= number_to_currency(childIncomeTotal, :precision => 0) %></th>
+				</tr>
+			</table>
+		</div>
+
+		<div class="assistance">
+			<h2 class="step">Step 2</h2>
+			<h2 class="details">
+				Do any Household Members currently participate in one or more of 
+				the following assistance programs: SNAP, TANF, or FDPIR?  
+			</h2>	
+			<p class="case">Case Number: 
+				N/A
+			</p>
+			<br />
+		</div>
+
+		<div class="income">
+			<h2 class="step">Step 3</h2>
+			<h2 class="details">
+				Report Income for ALL Household Members  
+			</h2>
+	
+			<table class="aIncome">
+				<tr>
+					<th>Adult Name</th>
+					<th>Work Earings</th>
+					<th>Public Assistance/Child Support/Alimony</th>
+					<th>Pension/Retirement/Other</th>
+				</tr>
+				<!-- Calculate total adult income -->
+				<% adultIncomeTotal = 0 %>		
+				<% @adults.each do |a| %>
+				<tr>
+					<td><%= a.adultName %></td>
+					<td width="25%"><%= number_to_currency(a.payCalc[0], precision: 0) %></td>
+					<td width="25%"><%= number_to_currency(a.payCalc[1], precision: 0) %></td>
+					<td width="25%"><%= number_to_currency(a.payCalc[2], precision: 0) %> </td>
+					<% aPay = a.payCalc[3] %>
+					<% adultIncomeTotal += aPay %>
+				</tr>
+				<% end %>
+			</table>
+			<table class="total">
+				<tr>
+					<th>Total Household Members: <%= @totalMembers %></th>
+					<th>Total Household Income: <%= number_to_currency(childIncomeTotal + adultIncomeTotal, precision: 0) %></th>
+					<th>Last 4 of SSN: 
+						<% if @household.four.blank? %>
+							N/A
+						<% else %>
+							<%= @household.four %>
+						<% end %>
+					</th>
+				</tr>
+			</table>
+		</div>
+
+	<% end %>
+	
+		<div class="contact">
+			<h2 class="step">Step 4</h2>
+			<h2 class="details">
+				Contact information and Adult signature
+			</h2>
+			<table class="contactInfo">
+				<tr class="info">
+					<% if @household.street.blank? %>
+						<td  width="35%">Not provided</td>
+					<% else %>
+						<td  width="35%"><%= @household.street %></td>
+					<% end %>
+					<td  width="15%"><%= @household.city %></td>
+					<td  width="5%"><%= @household.state %></td>
+					<td  width="5%"><%= @household.zip %></td>
+					<% if @household.phone.blank? %>
+						<td>Not Provided</td>
+					<% else %>
+						<td><%= @household.phone %></td>
+					<% end %>
+					<% if @household.email.blank? %>
+						<td>Not Provided</td>
+					<% else %>
+						<td><%= @household.email %></td>
+					<% end %>
+				</tr>
+				<tr>
+					<td>Street Address</td>
+					<td>City</td>
+					<td>State</td>
+					<td>Zip</td>
+					<td>Phone</td>
+					<td>Email</td>
+				</tr>
+			</table><br />
+	
+			<table class="contactInfo">
+				<tr class="info">
+					<td width="30%"><%= @household.fillerName %></td>
+					<td width="50%" class="fancy"><%= @household.signature %></td>
+					<td><%= @household.created_at.strftime("%A, %d %^b %Y") %></td>
+				</tr>
+				<tr>
+					<td>Name of Adult filling this form</td>
+					<td>Signature</td>
+					<td>Date</td>
+				</tr>
+			</table>
+		</div>
+	
+		
+		<div class="optional">
+			<h2 class="step">Optional</h2>
+			<h2 class="details">
+				Children's Ethnic and Racial Identities 
+			</h2>
+			<% if @optionals.present? %>
+				<table class="ethnicity">
+					<tr>
+						<th>Ethnicity</td>
+						<th>Race</td>
+					</tr>
+					<% @optionals.each do |op| %>
+					<tr>
+						<td>Hispanic <%= human_boolean(op.hl) %></td>
+						<td>American Indian or Alaskan Native <%= human_boolean(op.indy) %></td>
+					</tr>
+					<tr>
+						<td>Not Hispanic 
+						<% if op.hl == true %>
+							No
+						<% else %>
+							Yes
+						<% end %>
+						</td>
+						<td>Asian <%= human_boolean(op.azn) %></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>Black or African American <%= human_boolean(op.blk) %></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>Native Hawaiian or Other Pacific Islander <%= human_boolean(op.pac) %></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>White <%= human_boolean(op.wh) %> </td>
+					</tr>
+					<% end %>
+				</table>
+			<% else %>
+				<h2 class="NA">OPTED NOT TO SHARE</h2>
+			<% end %>
+		</div>
+		
+		<div class="section">
+			<p>
+				The <b>Richard B. Russell National School Lunch Act</b> requires the information on this application. 
+				You do not have to give the information, but if you do not, we cannot approve your child for free or reduced price meals. 
+				You must include the last four digits of the social security number of the adult household member who 
+				signs the application. The last four digits of the social security number is not required when 
+				you apply on behalf of a foster child or you list a Supplemental Nutrition Assistance Program (SNAP), 
+				Temporary Assistance for Needy Families (TANF) Program or Food Distribution Program on Indian Reservations 
+				(FDPIR) case number or other FDPIR identier for your child or when you indicate that the adult household 
+				member signing the application does not have a social security number. We will use your information 
+				to determine if your child is eligible for free or reduced price meals, and for administration and 
+				enforcement of the lunch and breakfast programs. We MAY share your eligibility information with education, 
+				health, and nutrition programs to help them evaluate, fund, or determine benets for their programs, auditors for program reviews, 
+				and law enforcement ofcials to help them look into violations of program rules. <br/><br/>
+				The U.S Department of Agriculture prohibits discrimination against its customers, 
+				employees, and applicants for employment on the bases of race, color, national origin, age, disability, sex, gender identity, religion, reprisal, and where applicable, political 
+				beliefs, marital status, familial or parental status, sexual orientation, or 
+			</p>
+		</div>
+		
+		<div class="section">
+			<p>
+				all or part of an individual's income is derived from any public assistance program, or protected 
+				genetic information in employment or in any program or activity conducted or funded 
+				by the Department. (Not all prohibited bases will apply to all programs and/or employment activities.) <br /><br />
+	
+				If you wish to le a Civil Rights program complaint of discrimination, complete the 
+				USDA Program Discrimination Complaint Form, found online at http://www.ascr.usda.gov/complaint_ling_cust.html, 
+				or at any USDA office, or call (866) 632-9992 to request the form. 
+				You may also write a letter containing all of the information requested in the form. 		
+				Send your completed complaint form or letter to us by mail at U.S. 
+				Department of Agriculture, Director, Ofce of Adjudication, 1400 Independence 
+				Avenue, S.W., Washington, D.C. 20250-9410, by fax (202) 690-7442 or email at 
+				program.intake@usda.gov.<br /><br />
+				
+				Individuals who are deaf, hard of hearing or have speech disabilities may contact 
+				USDA through the Federal Relay Service at (800) 877-8339; or (800) 845-6136 (Spanish). <br /><br /> 
+				
+				USDA is an equal opportunity provider and employer.		
+			</p>
+		</div>
+</div>
+
+
+

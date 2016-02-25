@@ -1,0 +1,36 @@
+<!-- Modal window -->
+<div id="aModal" style="display:none;">
+<p class="explanationA">
+	You are only required to provide a zip code. Below is an example of what we expect:
+</p>
+<p class="inputA">
+	123 Main St. Apt#3
+</p>
+<p class="inputB">
+	92054
+</p>
+ <p class="whyA">Why?</p>
+ <p class="whyDetailsA">
+	This helps us contact you when we determine eligibility for a household. The less you share with us
+	the harder it is to track you down. 
+ </p>
+</div>
+
+<!-- Link to open the modal -->
+<p class="emojiHelp"><a href="#aModal" rel="modal:open">&#128533;why?</a></p>
+
+
+<h3>Got it <%= @household.fillerName %>! Where do you currently live? <br />No worries if you can only provide a zipcode</h3>
+
+<div class="group">      
+	<%= f.text_field :street, :size=>"30", :maxlength=>"35", :autofocus=>true %>
+	<span class="bar"></span>
+	<label>Street Address</label>
+</div>
+<div class="group">      
+	<%= f.text_field :zip, :size=>"5", :maxlength=>"5", :required => true %>
+	<span class="bar"></span>
+	<label>Zip Code</label>
+</div>
+
+<a id="moveSlideRight" class="nextBtn" href="#1/1">Next</a>

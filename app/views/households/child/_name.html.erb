@@ -1,0 +1,51 @@
+<!-- Modal window -->
+<div id="nameModal" style="display:none;">
+ <p class="explanationA">
+	We need the child's fullname, which includes first, middle, and last name as applicable. Below is an example:				
+ </p>
+ <p class="whyA">Why?</p>
+ <p class="whyDetailsA">
+	If this child is eligible, we need to know their name to provide lunch to the right kid.
+ </p>
+</div>
+
+<!-- Link to open the modal -->
+<p class="emojiHelp"><a href="#nameModal" rel="modal:open">&#128533;why?</a></p>
+
+
+<h3>Please fill us in on our newest family member's full name to include middle if they have one:</h3>
+
+    <div class="group">      
+    	<%= c.text_field :name, :id=>"cName", :size=>"25", :maxlength=>"35", :autofocus => true, :onkeyup=> "catchName()" %>
+    	<span class="bar"></span>
+    	<label>Kids Full Name</label><br/><br/>
+    	<a id="moveSlideRight" class="nextBtnSS" href="#1/1">Next</a>
+	</div>
+
+<script>
+
+	function catchName(){
+		var el1 = document.getElementById("cName");
+		var el2 = document.getElementById("kidName1");
+		var el3 = document.getElementById("kidName2");
+		var el4 = document.getElementById("kidName3");
+		var el5 = document.getElementById("kidName4");
+		var el6 = document.getElementById("kidName5");
+		var el7 = document.getElementById("kidName6");
+		var el8 = document.getElementById("kidName7");
+		var el9 = document.getElementById("kidName8");
+		var el10 = document.getElementById("kidName9");
+		var str = el1.value;
+		var fname = str.substr(0,str.indexOf(' '));
+		el2.innerHTML = fname;
+		el3.innerHTML = fname;
+		el4.innerHTML = fname;
+		el5.innerHTML = fname;
+		el6.innerHTML = fname;
+		el7.innerHTML = fname;
+		el8.innerHTML = fname;
+		el9.innerHTML = fname;
+		el10.innerHTML = fname;
+	}
+
+</script>

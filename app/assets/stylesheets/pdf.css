@@ -1,0 +1,90 @@
+/* Application Prototype View */
+
+#pdf{
+	margin: 0 auto;
+	font-family: arial;
+	background-color: white;
+	font-size: 12px;
+	overflow-x: hidden;
+	text-align: left;
+}
+#pdf .child, #pdf .assistance, #pdf .income, #pdf .contact, #pdf .optional {
+	padding: 0 0 20px 0;
+	margin: 0 auto;
+}
+
+#pdf .details {
+	color: white;
+	padding: 5px 10px;
+	margin: 0;
+	font-size: 14px;
+	background-color: grey;
+	width: 100%;
+	text-align: center;
+}
+
+#pdf .step{
+	background-color: black;
+	color: white;
+	font-size: 14px;
+	text-align: center;
+	margin: 0;
+	padding: 5px 10px;
+	
+	float: left;
+}
+#pdf .children, #pdf .aIncome, #pdf .contactInfo, #pdf .ethnicity  {
+	width: 100%;
+}
+#pdf th, #pdf td {
+	text-align: left;
+}
+
+#pdf .children td, #pdf .aIncome td {
+	border: 1px solid grey;
+}
+#pdf .case {
+	border: 1px solid grey;
+	float: left;
+	padding: 5px 40px 5px 5px;
+	font-weight: bold;
+	margin: 5px 9px 0 0;
+}
+#pdf .section {
+	font-weight: bold;
+}
+.total th{
+	padding: 2px 20px 0 0;
+}
+.info td{
+	border: 1px solid grey;
+	padding: 5px;
+}
+
+.fancy {
+	font-family: Brush Script MT;
+}
+
+#pdf .section {
+	float: left;
+	width: 48%;
+	padding: 10px 5px 0 5px;
+	border-top: 1px solid black;
+	font-weight: regular;
+	text-align: justify;
+}
+
+#pdf h2.NR {
+	text-align: center;
+	margin: 10px 10px 10px 70px;
+	font-weight: bold;
+	width: 95%;
+}
+
+#pdf h2.NA {
+	text-align: center;
+	margin: 10px;
+	font-weight: bold;
+	width: 95%;
+	float: right;
+}

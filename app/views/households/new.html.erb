@@ -1,0 +1,33 @@
+<!-- Splash Page Form -->
+<%= form_for(@household) do |f| %>
+
+<div class="splashPage">
+	<%= render 'form', f: f %>
+</div>
+	
+<!-- START APPLICATION BACKGROUND SECTION -->
+<div id="myContainer" style="display:none;">
+	<div class="section" id="section1">
+		<div class="slide">
+			<div class="qArea">
+				<%= render 'households/background/overview', f: f %>
+			</div>
+		</div>
+	    <div class="slide">
+	    	<div class="qArea">
+				<%= render 'households/background/sign', f: f %>
+	    	</div>
+	    </div>
+	    <div class="slide">
+	    	<div class="qArea">
+				<%= render 'households/background/contact', f: f %>
+				<%= f.submit "Go to Households Section", class: "nextBtn" %>
+	    	</div>
+	    </div>
+	</div>
+	<% end %>
+	
+	<div id="btmProgress" style="display:none;">
+		<%= render 'households/background/progress' %>
+	</div>
+</div>

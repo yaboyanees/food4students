@@ -1,0 +1,26 @@
+# PostgreSQL
+# gem 'pg', '0.18.3'
+
+development:
+   adapter: postgresql
+   database: hotness
+   host: localhost
+   pool: 5
+   username: aneesmerzi
+   password:  
+
+test:
+   adapter: postgresql
+   database: hotness
+   host: localhost
+   pool: 5
+   username: aneesmerzi
+   password: 
+   
+production:
+   adapter: postgresql
+   database: hotness
+   host: localhost
+   pool: 5
+   username: aneesmerzi
+   password:  

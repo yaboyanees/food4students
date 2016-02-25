@@ -1,0 +1,28 @@
+	<h3>Does <span id="adultName2"><%= @household.fillerName %></span> Get Money From Child Support Mandated by the State?</h3>
+
+	<div class="csCalc">
+			<h4>
+				Gets $<input type="text" name="cs" value="" placeholder="100">
+				<select id="csFreqVal">
+					<option value="52">weekly</option>
+					<option value="26">every two weeks</option>
+					<option value="24">twice a month</option>
+					<option value="12">monthly</option>
+				</select>
+				<br /><br />	
+				which is roughly a gross annual income of $<input type="text" name="csTotal" id="csTotal" value="" style="border: none;" readonly>
+			</h4><br />	
+		<%= a.hidden_field :cs, :id=>"csTotal" %>
+		<a id="moveSlideRight" class="nocs" href="#1/6">Does Not Apply</a> <a id="moveSlideRight" class="nextBtn" href="#1/6">Next</a>
+	</div>
+
+
+<script>
+
+	$("#csFreqVal").change(function() {
+		var a = $('input[name="cs"]').val();
+		var b = $(this).val();
+		$('input[id="csTotal"]').val(a * b);
+	});
+	
+</script>

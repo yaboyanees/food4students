@@ -1,0 +1,50 @@
+<div id="navi">
+	<h4>
+		<%= link_to image_tag("logo.png"), root_path %>
+	</h4>
+	<span class="legal"><%= link_to "Our Promise", legal_index_path, class:"promise" %></span>
+</div>
+
+<div id="usda">
+	<h1>Hi, We Are E.A.T Lunch!</h1>
+	<span class="tagline">we partner with schools to provide lunch for low income children</span>
+	
+</div>
+	
+<p class="bubble-rt">...and what's your name?</p>
+<p id="div1" class="bubble-lft" style="display:block;"><%= image_tag("waiting.gif") %></p>
+<p id="div2" class="bubble-lft-ld" style="display:none;"></p>
+<p id="div3" class="bubble-rt-ld" style="display:none;">nice to meet you &#128075;!</p>
+<br />
+
+<p id="div4" style="display:block;">
+	<%= f.text_field :filler_name, :id=>"name", :size=>"10", :maxlength=>"25", :placeholder=>"First and Last", :required => true, :autofocus=>true, :onkeyup=> "writeIt()" %>
+	<a class="sendBtn">Send</a>
+</p>
+<a id="getStarted" class="ctaButton" style="display:none;">Get Started</a>
+
+<script>
+	
+	$(".sendBtn").click(function(){
+        $("#div1").hide();
+        $("#div2").show();
+        $("#div3").show();
+        $("#div4").hide();
+        $("#getStarted").show();
+    });
+
+	$("#getStarted").click(function(){
+        $(".splashPage").hide();
+        $("#myContainer").show();
+        $("#btmProgress").show();
+    });
+    
+	function writeIt(){
+		var el1 = document.getElementById("div2");
+		var el2 = document.getElementById("name");
+		var el3 = document.getElementById("applicantName");
+		el1.innerHTML = el2.value;
+		el3.innerHTML = el2.value;
+	}
+
+</script>

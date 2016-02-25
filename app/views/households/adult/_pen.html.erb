@@ -1,0 +1,28 @@
+	<h3>Does <span id="adultName8"><%= @household.fillerName %></span> Get Money from A Pension?</h3>
+
+	<div class="pCalc">
+			<h4>
+				Earns $<input type="text" name="p" value="" placeholder="100">
+				<select id="pFreqVal">
+					<option value="52">weekly</option>
+					<option value="26">every two weeks</option>
+					<option value="24">twice a month</option>
+					<option value="12">monthly</option>
+				</select>
+				<br /><br />	
+				which is roughly a gross annual income of $<input type="text" name="pTotal" id="pTotal" value="" style="border: none;" readonly>
+			</h4><br />	
+		<%= a.hidden_field :pen, :id=>"penTotal" %>
+		<a id="moveSlideRight" class="nopen" href="#1/9">Does Not Apply</a> <a id="moveSlideRight" class="nextBtn" href="#1/9">Next</a> 
+	</div>
+
+
+<script>
+
+	$("#pFreqVal").change(function() {
+		var a = $('input[name="p"]').val();
+		var b = $(this).val();
+		$('input[id="pTotal"]').val(a * b);
+	});
+	
+</script>

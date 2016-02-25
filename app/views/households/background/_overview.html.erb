@@ -1,0 +1,38 @@
+<div class="overviewPage">
+
+  <!-- Modal window -->
+  <div id="overview" style="display:none;">
+    <p class="explanation">
+    	This is an example of what shows up when clicked. We provide further details on what the question is
+   		asking and offer guidance on what we are looking for.  
+   	</p>
+   	 <p class="why">Why?</p>
+   	 <p class="whyDetails">
+    	To help you fill out the application to the best of your knowledge and limit wasting your time
+    	thinking about what we are looking for.
+   	</p>
+  </div>
+
+  <!-- Link to open the modal -->
+  <p class="emojiHelp"><a href="#overview" rel="modal:open">&#128533;why?</a></p>
+  
+	<h3>
+		You are doing a great thing for your family <span id="applicantName"></span>. There is
+		no risk in completing this application.
+	</h3>
+	<h4>Look for this &#128533; at the top right for more details. Below are some tips to help fill out the form faster!:</h4>
+
+	<div class="sideLt">	
+		<h5>Basic Info</h5><br/>
+			<p><%= image_tag ('check.png') %>Assistance Programs the Household is apart of</p>
+			<p><%= image_tag ('check.png') %>Full Name for everyone living in the household</p>
+			<p><%= image_tag ('check.png') %>Income information if apppcable</p>
+	</div>
+	<div class="sideRt">
+		<h5>Keyboard Shortcuts</h5><br/>
+			<p><span class="kboard-tab">tab</span> moves to next step</p>
+			<p><span class="kboard-arrow"><</span><span class="kboard-arrow">></span> arrow keys to move between steps</p>
+			<p>&#128071;Navigation bar to surf between sections</p>
+	</div>
+</div>
+

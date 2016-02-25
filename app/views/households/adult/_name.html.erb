@@ -1,0 +1,38 @@
+<h3>Please fill us in on our newest family members First and Last Name:</h3>
+
+    <div class="group">      
+    	<%= a.text_field :name, :id=>"aName", :size=>"25", :maxlength=>"35", :autofocus => true %>
+    	<span class="bar"></span>
+    	<label>Full Name</label><br/><br/>    	
+	</div>
+	<a id="moveSlideRight" class="nextBtnBlk" href="#1/1">Next</a>
+	
+<script>
+
+	function catchName(){
+		var el1 = document.getElementById("aName");
+		var el2 = document.getElementById("adultName1");
+		var el3 = document.getElementById("adultName2");
+		var el4 = document.getElementById("adultName3");
+		var el5 = document.getElementById("adultName4");
+		var el6 = document.getElementById("adultName5");
+		var el7 = document.getElementById("adultName6");
+		var el8 = document.getElementById("adultName7");
+		var el9 = document.getElementById("adultName8");
+		var el10 = document.getElementById("adultName9");
+		var el11 = document.getElementById("adultName9");
+		var str = el1.value;
+		var fname = str.substr(0,str.indexOf(' '));
+		el2.innerHTML = fname;
+		el3.innerHTML = fname;
+		el4.innerHTML = fname;
+		el5.innerHTML = fname;
+		el6.innerHTML = fname;
+		el7.innerHTML = fname;
+		el8.innerHTML = fname;
+		el9.innerHTML = fname;
+		el10.innerHTML = fname;
+		el11.innerHTML = fname;
+	}
+
+</script>

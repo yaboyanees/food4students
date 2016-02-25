@@ -1,0 +1,162 @@
+<div id="myContainer">
+	<div class="section" id="section4">
+		<%= form_for(@adult) do |a| %>
+			<% if @adults.present? %>
+		
+				<div class="slide">
+					<div class="qArea">
+						<div class="aForm" style="display:none;">
+							<%= render 'households/adult/name', a: a %>
+						</div>
+				
+						<div class="adultExist">
+							<h3>We are tracking the following adults in the household:</h3>
+							<% @adults.each do |a| %>
+								<h6><%= a.adultName %></h6>
+							<% end %><br /><br />
+							<%= link_to "Done Adding Adults", optionals_household_path(@household), class: "nextBtnOr" %>
+							<a id="moreAdults" class="nextBtnBlk" href="#">Add Adult</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="slide">
+					<div class="qArea">
+						<%= render 'households/adult/money', a: a %>
+					</div>
+				</div>
+				
+				<div class="slide">
+					<div class="qArea">
+						<%= render 'households/adult/military', a: a %>
+					</div>
+				</div>
+				
+			<% else %>
+		
+				<div class="slide">
+					<div class="qArea">
+						<div class="originalAview">
+							<h3>
+								Last step! We need to know ALL adults that live with you and  
+								share income and expenses.
+							</h3>
+							<h5>Let's Start with You first: <a id="moveSlideRight" class="nextBtnBlk" href="#household/1">Continue</a></h5>
+						</div>
+					</div>
+				</div>								
+	
+				<div class="slide">
+					<div class="qArea">
+						<%= render 'households/adult/moneyApplicant', a: a %>
+					</div>
+				</div>
+			
+				<div class="slide">
+					<div class="qArea">
+						<%= render 'households/adult/milApplicant', a: a %>
+					</div>
+				</div>
+				
+			<% end %>
+			
+			
+			<div class="slide">
+				<div class="qArea">
+					<%= render 'households/adult/job', a: a %>
+				</div>
+			</div>
+	
+			<div class="slide">
+				<div class="qArea">
+					<%= render 'households/adult/ali', a: a %>
+				</div>
+			</div>
+	
+			<div class="slide">
+				<div class="qArea">
+					<%= render 'households/adult/cs', a: a %>
+				</div>
+			</div>
+	
+			<div class="slide">
+				<div class="qArea">
+					<%= render 'households/adult/ret', a: a %>
+				</div>
+			</div>
+	
+			<div class="slide">
+				<div class="qArea">
+					<%= render 'households/adult/pa', a: a %>
+				</div>
+			</div>	
+	
+			<div class="slide">
+				<div class="qArea">
+					<%= render 'households/adult/pen', a: a %>
+				</div>
+			</div>
+	
+			<div class="slide">
+				<div class="qArea">
+					<%= render 'households/adult/se', a: a %>
+				</div>
+	
+			</div>	
+	
+			<div class="slide">
+				<div class="qArea">
+					<%= render 'households/adult/other', a: a %>
+				</div>
+			</div>			
+			
+	
+		<% end %>
+	</div>
+	<div id="btmProgress">
+		<%= render 'households/adult/progress'%>
+	</div>
+</div>
+
+<script>
+
+	$("#moreAdults").click(function(){
+		$(".aForm").show();
+		$(".adultExist").hide();
+	});	
+
+	$("#addApplicant").click(function(){
+		$(".altForm").show();
+		$(".originalAview").hide();
+	});	
+	
+	$(".noReceiveMoney").click(function(){
+		$(".receiveMoney").hide();
+		$(".noAincome").show();
+	});
+	
+	$(".yesReceiveMoney").click(function(){
+		$.fn.fullpage.moveSlideRight();
+	});		
+			
+	$(".noWork").click(function(){
+		$.fn.fullpage.moveSlideRight();
+	});	
+
+	$("#keepMoving").click(function(){
+		$(".otherCalc").hide();
+		$(".aCalcComplete").show();
+	});
+	
+	$("#noOther").click(function(){
+		$(".otherCalc").hide();
+		$(".aCalcComplete").show();
+	});
+
+	$("#yesMil").click(function(){
+		$(".mil").hide();
+		$(".milCalc").show();
+	});
+
+
+</script>

@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40"> 
+	<Worksheet ss:Name="applications-<%= Date.today %>">
+		<Table>
+			<Row>
+				<Cell><Data ss:Type="String">Applicant</Data></Cell>
+				<Cell><Data ss:Type="String">Date Signed</Data></Cell>
+				<Cell><Data ss:Type="String">Total Members</Data></Cell>
+				<Cell><Data ss:Type="String">Total Income</Data></Cell>
+				<Cell><Data ss:Type="String">Case Number</Data></Cell>
+				<Cell ss:MergeAcross="2"><Data ss:Type="String">Location</Data></Cell>
+			</Row>
+		<% @households.each do |h| %>
+			<Row>
+				<Cell><Data ss:Type="String"><%= h.fillerName %></Data></Cell>
+				<Cell><Data ss:Type="String"><%= h.created_at.strftime("%d %^b %Y") %></Data></Cell>
+
+				<!-- calculate total household members -->
+				<% childCount = h.children.count %>
+				<% adultCount = h.adults.count %>
+				<Cell><Data ss:Type="Number"><%= childCount + adultCount %></Data></Cell>											
+				
+				
+				<!-- calculate child + adult total income -->
+				<% childTotalIncome = 0 %>
+				<% h.children.each do |c| %>
+					<% childTotalIncome += c.payCalc[3] %>
+				<% end %>
+
+				<% adultTotalIncome = 0 %>
+				<% h.adults.each do |a| %>
+					<% adultTotalIncome += a.payCalc[3] %>
+				<% end %>
+				
+				<Cell><Data ss:Type="Number"><%= childTotalIncome + adultTotalIncome %></Data></Cell>
+				<Cell><Data ss:Type="String"><%= h.casenum %></Data></Cell>
+				<Cell ss:MergeAcross="2"><Data ss:Type="String"><%= h.location %></Data></Cell>
+			</Row>						
+		<% end %>
+		</Table>
+	</Worksheet>
+</Workbook>

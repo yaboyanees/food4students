@@ -1,0 +1,28 @@
+	<h3>Does <span id="adultName3"><%= @household.fillerName %></span> Get Money From Work to include strike benefits?</h3>
+
+	<div class="jobCalc">
+			<h4>
+				Earns $<input type="text" name="job" value="" placeholder="100">
+				<select id="jobFreqVal">
+					<option value="52">weekly</option>
+					<option value="26">every two weeks</option>
+					<option value="24">twice a month</option>
+					<option value="12">monthly</option>
+				</select>
+				<br /><br />	
+				which is roughly a gross annual income of $<input type="text" name="jobTotal" id="jobTotal" value="" style="border: none;" readonly>
+			</h4><br />	
+		<%= a.hidden_field :job, :id=>"jobTotal" %>
+		<a id="moveSlideRight" class="noJob" href="#1/4">No Job</a> <a id="moveSlideRight" class="nextBtn" href="#1/4">Next</a>
+	</div>
+
+
+<script>
+
+	$("#jobFreqVal").change(function() {
+		var a = $('input[name="job"]').val();
+		var b = $(this).val();
+		$('input[id="jobTotal"]').val(a * b);
+	});
+	
+</script>

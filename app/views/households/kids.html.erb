@@ -1,0 +1,158 @@
+<div id="myContainer">
+	<div class="section" id="section3">
+	<%= form_for(@child) do |c| %>
+
+		<div class="slide">
+			<div class="qArea">
+				<% if @children.present? %>
+				<div class="originalCview"><br/><br/><br/>
+					<h3>We are tracking the following kids living with you:</h3>
+					<% @children.each do |c| %>						
+						<h6><%= c.nameSplit[3] %></h6>				
+					<% end %><br /><br />
+					
+					<% if @household.casenum.present? %>
+						<%= link_to "Done Adding Children", optionals_household_path(@household), class: "nextBtnOr" %>
+					<% else %>
+						<%= link_to "Done Adding Children", adults_household_path(@household), class: "nextBtnOr" %>
+					<% end %>
+					<a id="moreChildren" class="nextBtnBlk" href="#1">Add Child</a>
+				</div>
+				<% else %>
+					<!-- Modal window -->
+					<div id="chModal" style="display:none;">
+					<p class="explanationA">
+						A child is anyone age 18 or under that is supported with the household’s income or in your care under a foster arrangement or qualify as homeless, migrant, or runaway youth.				
+					 </p>
+					 <p class="whyA">Why?</p>
+					 <p class="whyDetailsA">
+						If your children are eligible, we need to know their names to provide lunch to the right kids. Click the button to start.
+					</p>
+					</div>
+					
+					<!-- Link to open the modal -->
+					<p class="emojiHelp"><a href="#chModal" rel="modal:open">&#128533;why?</a></p>
+
+					<h3 class="statement">
+						We love providing food for America’s students. <br /><br />For this section, we need 
+						to know about ALL kids living with you that are under 19 years old to include 
+						teens in highschool.
+					</h3>
+					<h5 class="initialCadd">
+						Start by Adding a Child: 
+						<a id="moreChildren" class="nextBtnBlk" href="#1">Click to Add</a>
+					</h5>
+				<% end %>
+				<div class="cForm" style="display:none;">
+					<%= render 'households/child/name', c: c %>
+				</div>
+			</div>
+		</div>
+		
+		<% if @household.casenum.present? %>
+
+			<div class="slide">
+				<div class="qArea">
+					<%= render 'households/child/status', c: c %>
+					<%= c.hidden_field :household_id, :value => @household.id %><br /><br />
+					<div class="caseEligComplete" style="display:none;">
+						<h3>Great <%= @household.fillerName %>, we got all of it!</h3>
+						<%= c.submit "Add to Family", class: "nextBtn" %>
+					</div>
+				</div>
+			</div>				
+
+		
+		<% else %>
+
+			<div class="slide">
+				<div class="qArea">
+					<%= render 'households/child/status', c: c %>
+				</div>
+			</div>		
+			
+			<div class="slide">
+				<div class="qArea">
+					<%= render 'households/child/money', c: c %>
+				</div>
+			</div>
+			<div class="slide">
+				<div class="qArea">
+					<%= render 'households/child/payDetail', c: c %>
+				</div>
+			</div>
+			<div class="slide">
+				<div class="qArea">
+					<%= render 'households/child/annDetail', c: c %>
+				</div>
+			</div>
+			<div class="slide">
+				<div class="qArea">
+					<%= render 'households/child/penDetail', c: c %>
+				</div>
+			</div>
+			<div class="slide">
+				<div class="qArea">
+					<%= render 'households/child/smDetail', c: c %>
+				</div>
+			</div>
+			<div class="slide">
+				<div class="qArea">
+					<%= render 'households/child/ssDetail', c: c %>
+				</div>
+			</div>
+			<div class="slide">
+				<div class="qArea">
+					<%= render 'households/child/truDetail', c: c %>
+				</div>
+			</div>
+		<% end %>
+		
+	<% end %>
+	</div>
+	<div id="btmProgress">
+		<%= render 'households/child/progress'%>
+	</div>
+</div>
+
+<script>
+
+	$("#moreChildren").click(function(){
+		$(".cForm").show();
+		$(".statement").hide();
+		$(".originalCview").hide();
+		$(".initialCadd").hide();
+	});		
+        
+	$(".noMoney").click(function(){
+		$(".getMoney").hide();
+		$(".noCincome").show();
+	});
+
+	$(".yesMoney").click(function(){
+		$.fn.fullpage.moveSlideRight();
+	});
+
+	
+	$(".noWork").click(function(){
+		$.fn.fullpage.moveSlideRight();
+	});
+	
+	$("#noTru").click(function(){
+		$(".truCalc").hide();
+		$(".payCalcComplete").show();
+	});
+
+	$("#keepItMoving").click(function(){
+		$(".truCalc").hide();
+		$(".payCalcComplete").show();
+	});
+	
+	$("#keepIt").click(function(){
+		$(".cStatusField").hide();
+		$(this).hide();
+		$(".caseEligComplete").show();
+	});
+
+
+</script>

@@ -1,0 +1,28 @@
+	<h3>Does <span id="kidName3"></span> Get Money From an Annuity?</h3>
+
+	<div class="annCalc">
+		<h4>
+			 gets $<input type="text" name="ann" value="" placeholder="100">
+			<select id="annFreqVal">
+				<option value="52">weekly</option>
+				<option value="26">every two weeks</option>
+				<option value="24">twice a month</option>
+				<option value="12">monthly</option>
+			</select>
+			<br />
+			which is roughly $<input type="text" name="annTotal" id="annTotal" value="" style="border: none;" readonly> annually
+		</h4><br /><br />		
+			
+		<%= c.hidden_field :ann, :id=>"annTotal" %>
+		<a id="moveSlideRight" class="noWork" href="#">No Annuity Money</a> <a id="moveSlideRight" class="nextBtn" href="#1/5">Next</a>
+	</div>
+	
+<script>
+
+	$("#annFreqVal").change(function() {
+		var a = $('input[name="ann"]').val();
+		var b = $(this).val();
+		$('input[id="annTotal"]').val(a * b);
+	});
+	
+</script>

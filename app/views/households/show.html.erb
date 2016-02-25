@@ -1,0 +1,249 @@
+<!-- display updated message -->
+<% if flash[:notice] %>
+	<p id="flash_notice" class="messages-notice"><%= notice %></p>
+<% end %>
+
+<!-- Application Review Page -->
+<%= form_for(@household) do |f| %>
+<div id="showNav">
+	<h3>Applicant <%= @household.fillerName %> | <b>REVIEW</b></h3>
+		
+	<%= link_to "No More Changes", thank_you_household_path(:id=> @household), :class=>"btnNo" %>
+	<%= f.submit "Update", :class=>"btnExport" %>
+</div>
+
+<div id="edit-pdf">
+	<div class="child">
+		<h2 class="step">Step 1</h2>
+		<h2 class="details">
+			List ALL Household Members who are infants, children, and 
+			students up to and including grade 12
+		</h2>
+
+		<% if @household.casenum.present? %>
+		
+			<table class="children">
+			  <tr>
+				<th>Child's Name</th>
+				<th>Student</th>
+				<th>Foster</th>
+				<th>Homless/Migrant/Runaway</th>
+				<th>Head Start</th>
+			  </tr>
+				  
+			<%= f.nested_fields_for :children do |c| %>
+			  <tr>
+				<td><%= c.text_field :name, :value => (c.object.name.to_s.upcase.titleize), :size=>"25", :maxlength=>"35" %></td>	
+				<td><%= c.select :student, options_for_select([["Yes", true], ["No", false]], c.object.student) %></td>
+				<td><%= c.select :foster, options_for_select([["Yes", true], ["No", false]], c.object.foster) %></td>
+				<td><%= c.select :hmr, options_for_select([["Yes", true], ["No", false]], c.object.hmr) %></td>
+				<td><%= c.select :hs, options_for_select([["Yes", true], ["No", false]], c.object.hs) %></td>
+				<%= c.hidden_field :household_id, :value => @household.id %>
+			  </tr>
+			<% end %>
+			</table> 		
+
+	</div>		
+	
+	<div class="assistance">
+		<h2 class="step">Step 2</h2>
+		<h2 class="details">
+			Do any Household Members currently participate in one or more of 
+			the following assistance programs: SNAP, TANF, or FDPIR?  
+		</h2>	
+		<div class="case">
+			<h2>Case Number</h2>
+			<%= f.text_field :casenum, :size=>"20", :maxlength=>"30" %>
+		</div>
+		<br />
+	</div>
+	
+	<div class="income">
+		<h2 class="step">Step 3</h2>
+		<h2 class="details">
+			Report Income for ALL Household Members  
+		</h2>
+		<h2 class="NR">NOT REQUIRED/APPLICABLE</h2>
+	</div>
+	
+		<% else %>
+		
+			<table class="children">
+			  <tr>
+				<th>Child's Name</th>
+				<th>pay</th>
+				<th>social security</th>
+				<th>trust</th>
+				<th>pension</th>
+				<th>annuity</th>
+				<th>spending money</th>
+				<th>Student</th>
+				<th>Foster</th>
+				<th>Homless/Migrant/Runaway</th>
+				<th>Head Start</th>
+			  </tr>
+				  
+			<%= f.nested_fields_for :children do |c| %>
+			  <tr>
+				<td><%= c.text_field :name, :value => (c.object.name.to_s.upcase.titleize), :size=>"25", :maxlength=>"35" %></td>	
+				<td><%= c.text_field :pay, :value => c.object.pay, :maxlength=>"7" %></td>
+				<td><%= c.text_field :ss, :value => c.object.ss, :maxlength=>"7" %></td>
+				<td><%= c.text_field :tru, :value => c.object.tru, :maxlength=>"7" %></td>
+				<td><%= c.text_field :pen, :value => c.object.pen, :maxlength=>"7" %></td>
+				<td><%= c.text_field :ann, :value => c.object.ann, :maxlength=>"7" %></td>
+				<td><%= c.text_field :sm, :value => c.object.sm, :maxlength=>"7" %></td>
+				<td><%= c.select :student, options_for_select([["Yes", true], ["No", false]], c.object.student) %></td>
+				<td><%= c.select :foster, options_for_select([["Yes", true], ["No", false]], c.object.foster) %></td>
+				<td><%= c.select :hmr, options_for_select([["Yes", true], ["No", false]], c.object.hmr) %></td>
+				<td><%= c.select :hs, options_for_select([["Yes", true], ["No", false]], c.object.hs) %></td>
+				<%= c.hidden_field :household_id, :value => @household.id %>
+			  </tr>
+			<% end %>
+			</table> 	
+		
+
+	</div>
+	
+	<div class="assistance">
+		<h2 class="step">Step 2</h2>
+		<h2 class="details">
+			Do any Household Members currently participate in one or more of 
+			the following assistance programs: SNAP, TANF, or FDPIR?  
+		</h2>	
+		<div class="case">
+			<h2>Case Number</h2>
+			<%= f.text_field :casenum, :size=>"20", :maxlength=>"30" %>
+		</div>
+		<br />
+	</div>
+		
+	<div class="income">
+		<h2 class="step">Step 3</h2>
+		<h2 class="details">
+			Report Income for ALL Household Members  
+		</h2>
+		
+		<table class="aIncome">
+			<tr>
+				<th><b>Adult Name</b></th>
+				<th colspan="3"><b>Work</b></th>
+				<th colspan="3"><b>Public Assistance</b></th>
+				<th colspan="3"><b>Other</b></th>
+			</tr>
+
+			<tr>
+				<th></th>
+				<th>Job</th>
+				<th>Self Employed</th>
+				<th>Military</th>
+				<th>Public Assistance</th>
+				<th>Child Support</th>
+				<th>Alimony</th>
+				<th>Pension</th>
+				<th>Retirement</th>
+				<th>Other</th>
+			</tr>
+
+			<%= f.nested_fields_for :adults do |a| %>
+			<tr>
+				<td><%= a.text_field :name, :size=>"30", :value => (a.object.name.to_s.upcase.titleize), :maxlength=>"30", :placeholder=>"First and Last" %></td>
+				<td><%= a.text_field :job, :size=>"15", :value => a.object.job %></td>
+				<td><%= a.text_field :se, :size=>"15", :value => a.object.se %></td>
+				<td><%= a.text_field :mil, :size=>"15", :value => a.object.mil %></td>
+				<td><%= a.text_field :pa, :size=>"15", :value => a.object.pa %></td>
+				<td><%= a.text_field :cs, :size=>"15", :value => a.object.cs %></td>
+				<td><%= a.text_field :ali, :size=>"15", :value => a.object.ali %></td>
+				<td><%= a.text_field :pen, :size=>"15", :value => a.object.pen %></td>
+				<td><%= a.text_field :ret, :size=>"15", :value => a.object.ret %></td>
+				<td><%= a.text_field :other, :size=>"15", :value => a.object.other %></td>
+			</tr>
+			<% end %>
+		</table>
+	</div>
+	
+		<% end %>
+	
+	<div class="contact">
+		<h2 class="step">Step 4</h2>
+		<h2 class="details">
+			Contact information and Adult signature
+		</h2>
+		<table class="contactInfo">
+			<tr class="info">
+				<td><%= f.text_field :street, :size=>"30", :maxlength=>"35", :placeholder=>"street" %></td>
+				<td><%= f.text_field :city, :size=>"30", :maxlength=>"35", :placeholder=>"city" %></td>
+				<td><%= f.text_field :state, :size=>"30", :maxlength=>"35", :placeholder=>"state" %></td>
+				<td><%= f.text_field :zip, :size=>"5", :maxlength=>"5", :placeholder=>"zip" %></td>
+				<td><%= f.text_field :phone, :placeholder=>"phone" %></td>
+				<td><%= f.email_field :email, :size=>"25", :maxlength=>"35", :placeholder=>"email" %></td>
+			</tr>
+			<tr>
+				<td>Street Address</td>
+				<td>City</td>
+				<td>State</td>
+				<td>Zip</td>
+				<td>Phone</td>
+				<td>Email</td>
+			</tr>
+		</table>
+		
+		<table class="contactInfo">
+			<tr class="info">
+				<td width="30%"><%= @household.fillerName %></td>
+				<td width="50%" class="fancy" style="font-size: 20px;"><%= @household.signature %></td>
+				<td><%= @household.created_at.strftime("%A, %d %^b %Y") %></td>
+			</tr>
+			<tr>
+				<td>Name of Adult filling this form</td>
+				<td>Signature</td>
+				<td>Date</td>
+			</tr>
+		</table>
+	</div>
+	
+	<div class="optional">
+		<h2 class="step">Optional</h2>
+		<h2 class="details">
+			Children's Ethnic and Racial Identities 
+		</h2>
+		<% if @optionals.present? %>
+		<table class="ethnicity">
+			<tr>
+				<th>Ethnicity</td>
+				<th>Race</td>
+			</tr>
+			
+			<%= f.nested_fields_for :optionals do |o| %>
+			<tr>
+				<td>Hispanic <%= o.select :hl, options_for_select([["Yes", true], ["No", false]], o.object.hl), :include_blank => true %></td>
+				<td>American Indian or Alaskan Native <%= o.select :indy, options_for_select([["Yes", true], ["No", false]], o.object.indy), :include_blank => true %></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Asian <%= o.select :azn, options_for_select([["Yes", true], ["No", false]], o.object.azn), :include_blank => true %></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Black or African American <%= o.select :blk, options_for_select([["Yes", true], ["No", false]], o.object.blk), :include_blank => true %></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Native Hawaiian or Other Pacific Islander <%= o.select :pac, options_for_select([["Yes", true], ["No", false]], o.object.pac), :include_blank => true %></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>White <%= o.select :wh, options_for_select([["Yes", true], ["No", false]], o.object.wh), :include_blank => true %></td>
+			</tr>
+			<% end %>
+		</table>
+		<% else %>
+			<h2 class="NA">OPTED NOT TO SHARE</h2>
+		<% end %>
+	</div>
+</div>
+<% end %>
+
+
+<script>
+	$("#flash_notice" ).fadeOut(2500);
+</script>

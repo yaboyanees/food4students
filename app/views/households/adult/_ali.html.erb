@@ -1,0 +1,28 @@
+	<h3>Does <span id="adultName1"><%= @household.fillerName %></span> Get Money From Alimony Mandated by the State?</h3>
+
+	<div class="aliCalc">
+			<h4>
+				Earns $<input type="text" name="ali" value="" placeholder="100">
+				<select id="aliFreqVal">
+					<option value="52">weekly</option>
+					<option value="26">every two weeks</option>
+					<option value="24">twice a month</option>
+					<option value="12">monthly</option>
+				</select>
+				<br /><br />	
+				which is roughly a gross annual income of $<input type="text" name="aliTotal" id="aliTotal" value="" style="border: none;" readonly>
+			</h4><br />	
+		<%= a.hidden_field :ali, :id=>"aliTotal" %>
+		<a id="moveSlideRight" class="noAli" href="#1/5">Does Not Apply</a> <a id="moveSlideRight" class="nextBtn" href="#1/5">Next</a> 
+	</div>
+
+
+<script>
+
+	$("#aliFreqVal").change(function() {
+		var a = $('input[name="ali"]').val();
+		var b = $(this).val();
+		$('input[id="aliTotal"]').val(a * b);
+	});
+	
+</script>

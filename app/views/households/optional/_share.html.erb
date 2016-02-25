@@ -1,0 +1,36 @@
+<div class="optionQ">
+<h3>
+	All done! This part is optional if you wish to share what classifies the children race/ethnicity 
+	in the household.
+</h3>
+<h4>This helps us ensure we are giving an equal opportunity to every deserving family.</h4><br /><br /><br /> 
+	<a class="nope">No</a> 
+	<a class="okay">Yes</a>
+	<br /><br />
+</div>	
+<div class="compApp" style="display:none;">
+	<h3>We respect your decision. This will not effect your eligibility.</h3><br/><br/>
+	<%= link_to "Complete Application", @household, class: "nextBtn" %>
+</div>	
+
+<div class ="shareBackground" style="display:none;">
+	<h3>
+		Thanks <%= @household.fillerName %>! This will help us to better serve.
+	</h3>
+	<h4>Mark all that classify the children living with you:</h4><br />
+	<%= render 'households/optional/info', o: o %>
+</div>
+
+<script>
+	
+	$('.okay').click(function() {
+		$(".optionQ").hide();
+		$(".shareBackground").show();
+	});
+
+	$('.nope').click(function() {
+		$(".optionQ").hide();
+		$(".compApp").show();
+	});
+	
+</script>

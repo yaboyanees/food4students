@@ -1,0 +1,20 @@
+<div class="eachSection">
+	<%= image_tag("section1.png", class: "done") %>	
+	<span class="sectionTitle-done">background</span>
+</div>
+<div class="eachSection">
+	<%= link_to_if @households.present?, image_tag("section2.png", class: "done"), edit_household_path(@household) %>
+	<span class="sectionTitle-done">household</span>
+</div>
+<div class="eachSection">
+	<%= link_to_if @households.present?, image_tag("section3.png", class: "current"), kids_household_path(@household) %>
+	<span class="sectionTitle-current">kids</span>
+</div>
+<div class="eachSection">
+	<%= link_to_if @household.children.present?, image_tag("section4.png"), adults_household_path(@household) %>	
+	<span class="sectionTitle">adults</span>
+</div>
+<div class="eachSection">
+	<%= link_to_if @household.children.present?, image_tag("finish.png"), optionals_household_path(@household) %>
+	<span class="sectionTitle">finish</span>
+</div>

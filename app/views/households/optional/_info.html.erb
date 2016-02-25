@@ -1,0 +1,10 @@
+	<div class="shareBackground">
+		<h6><%= o.check_box :hl %> Hispanic or Latino</h6>
+		<h6><%= o.check_box :indy %> Native American</h6>
+		<h6><%= o.check_box :azn %> Asian</h6>
+		<h6><%= o.check_box :blk %> African American or Black</h6>
+		<h6><%= o.check_box :pac %> Pacific Islander or Native Hawaiian</h6>
+		<h6><%= o.check_box :wh %> White/Caucasian</h6>
+		<%= o.hidden_field :household_id, :value => @household.id %><br />
+	</div>
+	<%= o.submit "Complete Application", class: "nextBtn" %>   

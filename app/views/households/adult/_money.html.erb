@@ -1,0 +1,13 @@
+	<div class="receiveMoney">	
+		<h3>Does <span id="adultName5"><%= @household.fillerName %></span> receive money from allowances, work, or other sources outside the household?</h3>
+		<br/><br/>
+		<a class="noReceiveMoney">No</a> 
+		<a class="yesReceiveMoney">Yes</a> 	
+	</div>
+	
+	<div class="noAincome" style="display:none;">
+		<h3>Sounds good <%= @household.fillerName %>! Please click below to add to our family</h3>
+		<%= a.hidden_field :household_id, :value => @household.id %>
+		<%= a.submit "Add to Family", class: "nextBtn" %>
+	</div>
+	

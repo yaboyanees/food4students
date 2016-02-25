@@ -1,0 +1,92 @@
+<div id="admin">
+	<div id="topNav">
+		<h3>Admin Dashboard</h3>
+		
+		<!-- Export all applications to CSV -->
+		<%= link_to 'Export Reports', admin_url(format: "xls"), :class=>"btnExport" %>
+	</div>
+
+	<!-- display updated message -->
+	<% if flash[:notice] %>
+		<p id="flashNotice" class="messages-notice"><%= notice %></p>
+	<% end %>	
+	
+	<!-- Show all completed applications -->
+	<% @households.each do |h| %>
+		<div id="contentArea">
+			<div id="appList">
+			<table>
+			<%= form_for(h) do |f| %>
+				<tr>
+					<td colspan="3" class="status">Status<br/><%= f.select :status, options_for_select([['none', 1], ['approved', 2], ['denied', 3]], f.object.status) %></td>
+					<td colspan="3" class="review">Reviewed By<br/><%= f.text_field :reviewed_by, :value => (f.object.reviewed_by), :placeholder=>"initials", :size=>"10" %></td>
+				</tr>
+
+			
+				<tr>
+					<th colspan="2">Child</th>
+					<th>Student</th>
+					<th>Foster</th>
+					<th>HMR</th>
+					<th>HS</th>
+				</tr>
+				<% h.children.each do |c| %>
+					<tr>
+						<td colspan="2"><%= c.nameSplit[3] %></td>
+						<td width="4%"><%= human_boolean(c.student) %></td>
+						<td width="4%"><%= human_boolean(c.foster) %></td>
+						<td width="4%"><%= human_boolean(c.hmr) %></td>
+						<td width="4%"><%= human_boolean(c.hs) %></td>
+					</tr>
+				<% end %>
+	
+				<tr>
+					<th colspan="2">Applicant</th>
+					<th>Members</th>
+					<th>Income</th>
+					<th>Case#</th>
+				</tr>
+				
+				<tr>
+					<td colspan="2"><%= h.fillerName %></td>	
+					
+					<!-- calculate total household members -->
+					<% childCount = h.children.count %>
+					<% adultCount = h.adults.count %>
+					<td><%= totalCount = childCount + adultCount %></td>
+					
+					<!-- calculate child + adult total income -->
+					<% childTotalIncome = 0 %>
+					<% h.children.each do |c| %>
+						<% childTotalIncome += c.payCalc[3] %>
+					<% end %>
+	
+					<% adultTotalIncome = 0 %>
+					<% h.adults.each do |a| %>
+						<% adultTotalIncome += a.payCalc[3] %>
+					<% end %>
+					
+					<td><%= number_to_currency((childTotalIncome + adultTotalIncome), :precision => 0) %></td>
+					<% if h.casenum.present? %>
+						<td><%= h.casenum %></td>
+					<% else %>	
+						<td>N/A</td>
+					<% end %>						
+					<td></td>
+				</tr>
+
+
+				<tr>
+					<td colspan="3"><%= link_to 'View Details', household_path(h, :format => :pdf), :class=>"viewAdmin" %></td>
+					<td colspan="3"><%= f.submit "Update Packet", :class=>"updateAdmin" %></td>
+				</tr>
+			<% end %>
+			</table>
+		</div>
+		</div>
+	<% end %>
+</div>
+
+<script>
+	$("#flashNotice" ).fadeOut(2500);
+</script>
