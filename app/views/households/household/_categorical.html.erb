@@ -1,0 +1,43 @@
+<!-- Modal window -->
+<div id="catModal" style="display:none;">
+<p class="explanationA">
+	A kid is anyone age 18 or under that is supported with the household’s income or in your care under a foster arrangement or qualify as homeless, migrant, or runaway youth.
+	We need you to select 'All fit' if ALL children are one of those categories or select 'Not all' if not.
+ </p>
+ <p class="whyA">Why?</p>
+ <p class="whyDetailsA">
+	This helps us determine if we can expedite your packet based on the status of all of the children.
+</p>
+</div>
+
+<!-- Link to open the modal -->
+<p class="emojiHelp"><a href="#catModal" rel="modal:open"><%= image_tag('confused.png') %></a></p>
+
+	<div class="kidStatuses">	
+		<h3>
+			Thanks <%= @household.fillerName %>! Before we get started with the kids section, do ALL of the kids living
+			in the household fit at least one of these categories: foster, migrant, runaway, and/or homeless? 
+		</h3><br/>
+		<a id="noStatus" class="nextBtnOr">Not ALL fit these</a> 
+		<%= f.submit "ALL fit these statuses", id: "catTrue", class: "nextBtnBlk" %>	
+	</div>
+	<%= f.hidden_field :categorical, id: "categoryBool" %>
+	<div class="finishStatus" style="display:none;"><br/><br/>
+		<h3>No problem. This does not affect eligibility.</h3>
+		<%= f.submit "Go to Kids Section", class: "nextBtn" %>
+	</div>
+	
+<script>
+
+$("#noStatus").on("click",function(){
+      $(".kidStatuses").hide();
+      $(".finishStatus").show();
+});
+
+$("#catTrue").on("click",function(){
+      $("input#categoryBool").val("true");
+});
+
+</script>
+	
+

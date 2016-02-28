@@ -36,9 +36,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Convert zipcodes to state and city
 gem 'area'
 
-# Create mass fake/test data 
-gem 'ffaker'
-
 # update multiple forms on one submit
 gem 'nested_form_fields'
 

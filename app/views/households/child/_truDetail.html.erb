@@ -1,26 +1,21 @@
-
 	<div class="truCalc">
-		<h3>Does <span id="kidName8"></span> Get Money From Trust?</h3>
-		<h4>
-			Gets $<input type="text" name="tru" value="" placeholder="100">
+		<h3>From Trust Fund <span class="showAnnTru" style="display:none;">: $<input type="text" name="truTotal" id="truTotal" value="" style="border: none;" readonly></span><a class="toggleTru">Details</a></h3>
+		<h4 class="truScale" style="display:none;">
+			<span id="kidName8"></span> gets $<input type="text" name="tru" value="" placeholder="100">
 			<select id="truFreqVal">
+				<option value="0">how often?</option>
 				<option value="52">weekly</option>
 				<option value="26">every two weeks</option>
 				<option value="24">twice a month</option>
 				<option value="12">monthly</option>
 			</select>
+			from a Trust
 			<br /><br />	
 			which is roughly $<input type="text" name="truTotal" id="truTotal" value="" style="border: none;" readonly> annually
-		</h4><br />	
+		</h4>
 		<%= c.hidden_field :tru, :id=>"truTotal" %>
-		<a id="noTru" class="noTru">No Trust Money</a><a id="keepItMoving" class="nextBtn">Done</a> 
 	</div>
-
-
-	<div class="payCalcComplete" style="display:none;">
-		<h3>Great <%= @household.fillerName %>, we got all of it!</h3>
-		<%= c.submit "Add to Family", class: "nextBtn" %>
-	</div>
+	
 	
 <script>
 
@@ -28,6 +23,18 @@
 		var a = $('input[name="tru"]').val();
 		var b = $(this).val();
 		$('input[id="truTotal"]').val(a * b);
+		$('.truScale').fadeOut(2000);
+		$('.showAnnTru').show();
+		$(".toggleTru").show();
+		
+		$('.truCalc').toggleClass("active");
+	});
+	
+	$(".toggleTru").click(function() {
+		$('.truScale').toggle();
+		$('.showAnnTru').show();
+
+        $('.truCalc').toggleClass("active");
 	});
 	
 </script>

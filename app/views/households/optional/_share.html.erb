@@ -1,31 +1,37 @@
+<!-- Modal window -->
+<div id="sModal" style="display:none;">
+<p class="explanationA">
+	We are required to ask for information about your children’s race and ethnicity. Responding to this section is optional and does not affect your children’s eligibility for free or reduced price meals.
+</p>
+ <p class="whyA">Why?</p>
+ <p class="whyDetailsA">
+	We need this important information to help us ensure that we are fully serving our community. 
+</p>
+</div>
+
+<!-- Link to open the modal -->
+<p class="emojiH"><a href="#sModal" rel="modal:open"><%= image_tag('confused.png') %></a></p>
+
 <div class="optionQ">
-<h3>
-	All done! This part is optional if you wish to share what classifies the children race/ethnicity 
-	in the household.
-</h3>
-<h4>This helps us ensure we are giving an equal opportunity to every deserving family.</h4><br /><br /><br /> 
-	<a class="nope">No</a> 
-	<a class="okay">Yes</a>
-	<br /><br />
+	<h3>
+		All done! This part is optional if you wish to share what classifies the children race/ethnicity 
+		in the household.
+	</h3>
+	<h4>This helps us ensure we are giving an equal opportunity to every deserving family.</h4><br /><br /><br /> 
+		<a class="nope">No</a> 
+		<a class="okay">Yes</a>
+		<br /><br />
 </div>	
 <div class="compApp" style="display:none;">
 	<h3>We respect your decision. This will not effect your eligibility.</h3><br/><br/>
 	<%= link_to "Complete Application", @household, class: "nextBtn" %>
 </div>	
 
-<div class ="shareBackground" style="display:none;">
-	<h3>
-		Thanks <%= @household.fillerName %>! This will help us to better serve.
-	</h3>
-	<h4>Mark all that classify the children living with you:</h4><br />
-	<%= render 'households/optional/info', o: o %>
-</div>
 
 <script>
 	
 	$('.okay').click(function() {
-		$(".optionQ").hide();
-		$(".shareBackground").show();
+		$.fn.fullpage.moveSlideRight();
 	});
 
 	$('.nope').click(function() {

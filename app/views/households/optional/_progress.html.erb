@@ -1,17 +1,17 @@
 <div class="eachSection">
-	<%= image_tag("section1.png", class: "done") %>	
+	<%= image_tag("section1-done.png", class: "done") %>	
 	<span class="sectionTitle-done">background</span>
 </div>
 <div class="eachSection">
-	<%= link_to_if @household.children.present?, image_tag("section2.png", class: "done"), edit_household_path(@household) %>
+	<%= link_to_if @household.children.present?, image_tag("section2-done.png", class: "done"), edit_household_path(@household) %>
 	<span class="sectionTitle-done">household</span>
 </div>
 <div class="eachSection">
-	<%= link_to_if @household.children.present?, image_tag("section3.png", class: "done"), kids_household_path(@household) %>
+	<%= link_to_if @household.children.present?, image_tag("section3-done.png", class: "done"), kids_household_path(@household) %>
 	<span class="sectionTitle-done">kids</span>
 </div>
 <div class="eachSection">
-	<%= link_to_if @household.adults.present?, image_tag("section4.png", class: "done"), adults_household_path(@household) %>	
+	<%= link_to_if @household.adults.present?, image_tag("section4-done.png", class: "done"), adults_household_path(@household) %>	
 	<span class="sectionTitle-done">adults</span>
 </div>
 <div class="eachSection">

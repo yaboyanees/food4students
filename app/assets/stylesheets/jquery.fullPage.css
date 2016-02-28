@@ -57,7 +57,9 @@ a.yescs:hover, a.yesOther:hover, a.yespa:hover, a.yesret:hover, a.yesse:hover, a
 	color: #333;
 }
 
-
+.receiveMoney h3{
+	padding: 50px 0 50px 0 !important;
+}
 
 a{
 	text-decoration:none;
@@ -71,7 +73,57 @@ a:active {
 }
 .cForm {
 	width: 100%;
-	height: 80%;
+	height: 600px;
+}
+.getMoney, .adultExist, .aForm, .noCincome{
+	width: 100%;
+	height: 600px;
+	padding-top: 90px;
+}
+
+.receiveMoney, .kidStatuses {
+	width: 100%;
+	height: 600px;
+	padding-top: 60px;
+}
+.howMoney, .currentAddress, .kidSection {
+	width: 100%;
+	height: 600px;
+	padding-top: 15px;
+}
+.howIncome {
+	width: 100%;
+	height: 750px;
+	padding-top: 0;
+}
+
+.payCalcComplete{
+	width: 100%;
+	height: 600px;
+	padding-top: 175px;
+}
+.compApp{
+	width: 100%;
+	height: 600px;
+	padding-top: 200px;
+}
+.optionQ, .shareBackground{
+	width: 100%;
+	height: 600px;
+	padding-top: 95px;
+}
+
+.mil{
+	padding-top: 10%;
+}
+.milCalc{
+	padding-top: 5%;
+}
+
+.cStatusField, .originalAview {
+	width: 100%;
+	height: 800px;
+	padding-top: 20px;
 }
 table {
     border-spacing: 0;
@@ -142,7 +194,7 @@ a#moveSectionDown, a#moreChildren, a#moreAdults {
 	z-index: 99999;
 	color: white;
 }
-input.nextBtn, .nextBtn, .nextBtnSS, .nextBtnSign {
+input.nextBtn, .nextBtn, .nextBtnSS, .nextBtnSign, .nextBtnMoney {
 	padding: 15px 30px;
 	background-color: #2196f3;
 	font-size: 25px;
@@ -152,6 +204,9 @@ input.nextBtn, .nextBtn, .nextBtnSS, .nextBtnSign {
 .nextBtnSS {
 	float: left;
 	margin: 0 0 0 110px;
+}
+.nextBtnMoney {
+	margin: 0 auto;
 }
 .nextBtnSign{
 	float: left;
@@ -183,6 +238,7 @@ input.nextBtn{
 	font-size: 25px;
 	cursor: pointer;
 	color: #333 !important;
+	border:none !important;
 }
 .nextBtnOr{
 	padding: 15px 40px;

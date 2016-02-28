@@ -1,13 +1,30 @@
-	<h3>Does <span id="adultName4"></span> Currently Serve in the Military?</h3><br/><br/>
+	<!-- Modal window -->
+	<div id="milCModal" style="display:none;">
+	 <p class="explanation">
+		This is CURRENT service as active, national guard, or reserve in any military branch: Air Force, Army, Coast Guard, Marine Corps, and Navy. 
+		If this applies, click yes and select the current rank and years of service. We will calculate your base pay for you to save you time.
+	 </p>
+	 <p></p>
+	 <p class="whyA">Why?</p>
+	 <p class="whyDetailsA">
+		We need this information to determine household income eligibility for our program. 
+	 </p>
+	</div>
+
+	<!-- Link to open the modal -->
+	<p class="emojiHelp"><a href="#milCModal" rel="modal:open"><%= image_tag('confused.png') %></a></p>
+
+	
 	<div class="mil">
+		<h3>Does <span id="adultName7"></span> Currently Serve in the Military?</h3><br/><br/>
 		<a id="moveSlideRight" class="nextBtnOr" href="#1/3">Not Serving</a>
 		<a id="yesMil" class="nextBtnBlk">Yes</a>
 	</div>
 	<div class="milCalc" style="display:none;">
-		<h5>
+		<h3>
 			Thank you for your family's Service and Sacrifice!<br />Please Select Current Rank, 
-			Years of Service, and Status
-		</h5><br/>
+			Years of Service, and Status.
+		</h3><br/><br/>
 		
 		<select id="rank">
 			<option>E6</option>
@@ -32,6 +49,7 @@
 	</div>
 
 
+
 <% if false %>
 		<!-- mil pay calc form -->
 		<%= form_tag(paygrades_path, :method => "get", id: "search-form", :validate=>true) do %>
@@ -40,3 +58,8 @@
 			<%= submit_tag "Calculate", :name => nil %>
 		<% end %>
 <% end %>
+
+<script>
+
+	
+</script>

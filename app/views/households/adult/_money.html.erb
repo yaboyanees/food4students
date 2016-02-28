@@ -1,13 +1,84 @@
+	<!-- Modal window -->
+	<div id="moneyAModal" style="display:none;">
+	 <p class="explanation">
+		This is any Money received from outside the household to include wages, benefits, investments, assistance, and other money 
+		directly received by this Adult. If applicable, We need you to mark all of the current ways this Adult makes/receives money. 			
+	 </p>
+	 <p></p>
+	 <p class="whyA">Why?</p>
+	 <p class="whyDetailsA">
+		This helps us determine income eligibility for our program to ensure that we are serving those that need help. 
+	 </p>
+	</div>
+
+	<!-- Link to open the modal -->
+	<p class="emojiH"><a href="#moneyAModal" rel="modal:open"><%= image_tag('confused.png') %></a></p>
+
+
 	<div class="receiveMoney">	
-		<h3>Does <span id="adultName5"><%= @household.fillerName %></span> receive money from allowances, work, or other sources outside the household?</h3>
-		<br/><br/>
+		<h3>Does <span id="adultName1"><%= @household.fillerName %></span> receive money from allowances, work, or other sources outside the household?</h3>
+		<br/>
 		<a class="noReceiveMoney">No</a> 
 		<a class="yesReceiveMoney">Yes</a> 	
 	</div>
 	
 	<div class="noAincome" style="display:none;">
-		<h3>Sounds good <%= @household.fillerName %>! Please click below to add to our family</h3>
+		<h3>You are good at this <%= @household.fillerName %>! Now, click below to add <span id="adultName2">Yourself</span> to our family</h3>
 		<%= a.hidden_field :household_id, :value => @household.id %>
 		<%= a.submit "Add to Family", class: "nextBtn" %>
 	</div>
 	
+	
+	<div class="howIncome" style="display:none;">
+		<h3>Please Mark all income sources that apply to <span id="adultName3">You</span></h3>
+		<div class="aStatus">
+			<h6><input type="checkbox" id="WorkCH">Job Wages</h6>
+			<h6><input type="checkbox" id="AliCH">Court-Ordered Alimony</h6>
+			<h6><input type="checkbox" id="CSCH">Court-Ordered Child Support</h6>
+			<h6><input type="checkbox" id="PACH">Unemployement/SSI</h6>
+			<h6><input type="checkbox" id="PCH">Income Annuity</h6>
+			<h6><input type="checkbox" id="RetCH">Retirement/Social Security</h6>
+			<h6><input type="checkbox" id="SECH">Self Employed</h6>
+			<h6><input type="checkbox" id="otherCH">Other Income Such as Investments</h6>
+		</div>
+		<br/><br/><br/>
+		<a id="incomeBreakdown" class="nextBtnBlk">Next</a>
+	</div>
+
+
+
+	<script>
+			
+		$('#WorkCH').change(function(){
+			$(".workCalculate").toggle();
+		}); 
+	
+		$('#AliCH').change(function(){
+			$(".aliCalculate").toggle();
+		}); 
+		
+		$('#CSCH').change(function(){
+			$(".csCalculate").toggle();
+		});
+		
+		$('#PACH').change(function(){
+			$(".paCalculate").toggle();
+		});
+		
+		$('#PCH').change(function(){
+			$(".pCalculate").toggle();
+		});
+		
+		$('#RetCH').change(function(){
+			$(".retCalculate").toggle();
+		});
+
+		$('#SECH').change(function(){
+			$(".seCalculate").toggle();
+		});
+		
+		$('#otherCH').change(function(){
+			$(".otherCalculate").toggle();
+		});
+		
+	</script>

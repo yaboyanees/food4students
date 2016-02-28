@@ -5,13 +5,13 @@
 		<div class="slide">
 			<div class="qArea">
 				<% if @children.present? %>
-				<div class="originalCview"><br/><br/><br/>
+				<div class="originalCview"><br/><br/><br/><br /><br />
 					<h3>We are tracking the following kids living with you:</h3>
 					<% @children.each do |c| %>						
 						<h6><%= c.nameSplit[3] %></h6>				
-					<% end %><br /><br />
+					<% end %><br /><br /><br /><br />
 					
-					<% if @household.casenum.present? %>
+					<% if @household.casenum.present? || @household.categorical == true %>
 						<%= link_to "Done Adding Children", optionals_household_path(@household), class: "nextBtnOr" %>
 					<% else %>
 						<%= link_to "Done Adding Children", adults_household_path(@household), class: "nextBtnOr" %>
@@ -31,37 +31,47 @@
 					</div>
 					
 					<!-- Link to open the modal -->
-					<p class="emojiHelp"><a href="#chModal" rel="modal:open">&#128533;why?</a></p>
-
-					<h3 class="statement">
-						We love providing food for America’s students. <br /><br />For this section, we need 
-						to know about ALL kids living with you that are under 19 years old to include 
-						teens in highschool.
-					</h3>
-					<h5 class="initialCadd">
-						Start by Adding a Child: 
-						<a id="moreChildren" class="nextBtnBlk" href="#1">Click to Add</a>
-					</h5>
+					<p class="emojiHelp"><a href="#chModal" rel="modal:open"><%= image_tag('confused.png') %></a></p>
+					
+					<div class="kidSection">
+						<h3 class="statement">
+							Thanks for filling out the Household Section. <br /><br />Please tell us more 
+							about ALL kids living with you that are under 19 years old to include 
+							teens in highschool and infants.
+						</h3>
+						<h5 class="initialCadd">
+							Start by Adding a Child: 
+							<a id="moreChildren" class="nextBtnBlk" href="#1/1">Click to Add</a>
+						</h5>
+					</div>
 				<% end %>
-				<div class="cForm" style="display:none;">
+			</div>
+		</div>
+
+		<div class="slide">
+			<div class="qArea">				
+				<div class="cForm">
 					<%= render 'households/child/name', c: c %>
 				</div>
 			</div>
 		</div>
 		
-		<% if @household.casenum.present? %>
+		<% if @household.casenum.present? || @household.categorical == true %>
 
 			<div class="slide">
 				<div class="qArea">
 					<%= render 'households/child/status', c: c %>
 					<%= c.hidden_field :household_id, :value => @household.id %><br /><br />
-					<div class="caseEligComplete" style="display:none;">
-						<h3>Great <%= @household.fillerName %>, we got all of it!</h3>
-						<%= c.submit "Add to Family", class: "nextBtn" %>
-					</div>
 				</div>
 			</div>				
 
+			<div class="slide">
+				<div class="qArea">
+					<br /><br /><br /><br /><br /><br /><br /><br />
+					<h3>Great <%= @household.fillerName %>, we got all of it!</h3>
+					<br /><%= c.submit "Add to Family", class: "nextBtn" %>
+				</div>
+			</div>	
 		
 		<% else %>
 
@@ -76,36 +86,45 @@
 					<%= render 'households/child/money', c: c %>
 				</div>
 			</div>
-			<div class="slide">
-				<div class="qArea">
-					<%= render 'households/child/payDetail', c: c %>
+			<div class="slide" id="jobCB"> 
+				<div class="qArea" style="overflow-x: scroll !important;">
+					<!-- Modal window -->
+					<div id="annModal" style="display:none;">
+					<p class="explanationA">
+						We need you to report the current amount received and the frequency 
+						at which it is received. Report all amounts that are received before taxes/deductions.
+					</p>
+					 <p class="whyA">Why?</p>
+					 <p class="whyDetailsA">
+						This information directly impacts your family receiving assistance. Current income is used to 
+						determine eligibility. 
+					</p>
+					</div>
+					
+					<!-- Link to open the modal -->
+					<p class="emojiHelpKids"><a href="#annModal" rel="modal:open"><%= image_tag('confused.png') %></a></p>
+					
+					<h3>Thanks for marking those income types for <span id="kidName11"></span>. Now we need the GROSS income and frequency for each. Click the 'details' button next to each pay type to start.</h3>
+					<div class="jobCalculate" style="display:none;"><%= render 'households/child/payDetail', c: c %></div>
+					<div class="annCalculate" style="display:none;"><%= render 'households/child/annDetail', c: c %></div>
+					<div class="penCalculate" style="display:none;"><%= render 'households/child/penDetail', c: c %></div>
+					<div class="smCalculate"  style="display:none;"><%= render 'households/child/smDetail', c: c %></div>
+					<div class="ssCalculate"  style="display:none;"><%= render 'households/child/ssDetail', c: c %></div>
+					<div class="truCalculate" style="display:none;"><%= render 'households/child/truDetail', c: c %></div>
+					<br /><br /><br /><br />
+					<a id="doneMoney" class="nextBtnBlk">Finished Income</a>
 				</div>
 			</div>
-			<div class="slide">
+
+			<div class="slide" id="paySubmitComplete">
 				<div class="qArea">
-					<%= render 'households/child/annDetail', c: c %>
+					<div class="payCalcComplete">
+						<h3>Great <%= @household.fillerName %>, we got all of it!</h3><br />
+						<%= c.submit "Add to Family", class: "nextBtn" %>
+					</div>
 				</div>
 			</div>
-			<div class="slide">
-				<div class="qArea">
-					<%= render 'households/child/penDetail', c: c %>
-				</div>
-			</div>
-			<div class="slide">
-				<div class="qArea">
-					<%= render 'households/child/smDetail', c: c %>
-				</div>
-			</div>
-			<div class="slide">
-				<div class="qArea">
-					<%= render 'households/child/ssDetail', c: c %>
-				</div>
-			</div>
-			<div class="slide">
-				<div class="qArea">
-					<%= render 'households/child/truDetail', c: c %>
-				</div>
-			</div>
+			
 		<% end %>
 		
 	<% end %>
@@ -118,10 +137,7 @@
 <script>
 
 	$("#moreChildren").click(function(){
-		$(".cForm").show();
-		$(".statement").hide();
-		$(".originalCview").hide();
-		$(".initialCadd").hide();
+		$.fn.fullpage.moveSlideRight();
 	});		
         
 	$(".noMoney").click(function(){
@@ -129,19 +145,15 @@
 		$(".noCincome").show();
 	});
 
-	$(".yesMoney").click(function(){
+	$("#doneMoney").click(function(){
 		$.fn.fullpage.moveSlideRight();
 	});
 
-	
-	$(".noWork").click(function(){
-		$.fn.fullpage.moveSlideRight();
+	$(".yesMoney").click(function(){
+		$(".getMoney").hide();
+		$(".howMoney").show();
 	});
-	
-	$("#noTru").click(function(){
-		$(".truCalc").hide();
-		$(".payCalcComplete").show();
-	});
+
 
 	$("#keepItMoving").click(function(){
 		$(".truCalc").hide();

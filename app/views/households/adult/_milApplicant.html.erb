@@ -1,34 +1,63 @@
-	<h3>Do you Currently Serve in the Military?</h3><br/><br/>
+	<!-- Modal window -->
+	<div id="milModal" style="display:none;">
+	 <p class="explanation">
+		This is CURRENT service as active, national guard, or reserve in any military branch: Air Force, Army, Coast Guard, Marine Corps, and Navy. 
+		If this applies, click yes and select the current rank and years of service. We will calculate your base pay for you to save you time.
+	 </p>
+	 <p></p>
+	 <p class="whyA">Why?</p>
+	 <p class="whyDetailsA">
+		We need this information to determine household income eligibility for our program. 
+	 </p>
+	</div>
+
+	<!-- Link to open the modal -->
+	<p class="emojiHelp"><a href="#milModal" rel="modal:open"><%= image_tag('confused.png') %></a></p>
+
+	
 	<div class="mil">
-		<a id="moveSlideRight" class="nextBtnOr" href="#1/3">Not Serving</a>
+		<h3>Do you Currently Serve in the Military?</h3><br/><br/>
+		<a id="moveSlideRight" class="nextBtnOr" href="#1/2">Not Serving</a>
 		<a id="yesMil" class="nextBtnBlk">Yes</a>	
 	</div>
 	
 	<div class="milCalc" style="display:none;">
-		<h5>
+		<h3>
 			Thank you for your family's Service and Sacrifice!<br />Please Select Current Rank, 
 			Years of Service, and Status
-		</h5><br/>
-		<select id="rank">
-			<option>E6</option>
-			<option>E5</option>
-			<option>E4</option>
-			<option>E3</option>
-		</select>
-		<select id="years">
-			<option>6</option>
-			<option>5</option>
-			<option>4</option>
-			<option>3</option>
-		</select>
+		</h3><br/><br/><br/>
+		
+		<!-- search form -->
+		<%= form_tag(home_index_path, :method => "get", id: "search-form", :validate=>true) do %>
+			<%= select_tag :rank, options_for_select(@ranks, params[:rank]), :prompt => 'Current Rank' %>
+			<%= select_tag :year, options_for_select(@years, params[:year]), :prompt => 'Years of Service' %>
+			<%= submit_tag "Calculate", :name => nil %>
+		<% end %>
+		
+		<!-- return results after search -->
+		<% if params[:rank].present? && params[:year].present? %>
+		
+			<% if @result.each do |a| %>
+				<%= number_to_currency(a.pay) %>
+			<% end.empty? %>
+				Please provide valid rank and years of service
+				<%= form_tag(home_index_path, :method => "get", id: "search-form", :validate=>true) do %>
+					<%= select_tag :rank, options_for_select(@ranks, params[:rank]), :prompt => 'Current Rank' %>
+					<%= select_tag :year, options_for_select(@years, params[:year]), :prompt => 'Years of Service' %>
+					<%= submit_tag "Calculate", :name => nil %>
+				<% end %>
+			<% end %>
+		
+		<% end %>
+
 		<a id="activeDuty" class="nextBtnOr">Active</a>
 		<a id="nationalGuard" class="nextBtnOr">National Guard</a>
 		<a id="reserves" class="nextBtnOr">Reserves</a>
-		<br /><br />		
+		<br /><br /><br/>	
 		
 		<%= a.text_field :mil %>
 		<%= a.hidden_field :name, :value => @household.fillerName %>
-		<a id="moveSlideRight" class="nextBtnBlk" href="#1/3">Next</a> 
+		<a id="moveSlideRight" class="nextBtnBlk" href="#1/2">Next</a> 
 	</div>
 	
 <script>

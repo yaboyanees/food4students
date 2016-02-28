@@ -2,7 +2,7 @@
 <%= wicked_pdf_stylesheet_link_tag "pdf" -%>
 
 <div id="pdf">
-	<% if @household.casenum.present? %>
+	<% if @household.casenum.present? || @household.categorical == true %>
 
 		<div class="child">
 			<h2 class="step">Step 1</h2>
@@ -47,7 +47,7 @@
 			<p class="case">Case Number: 
 				<%= @household.casenum %>
 			</p>
-			<br />
+			<br /><br />
 		</div>
 
 
@@ -61,6 +61,7 @@
 
 
 	<% else %>
+	
 		<div class="child">
 			<h2 class="step">Step 1</h2>
 			<h2 class="details">
@@ -117,7 +118,7 @@
 			<p class="case">Case Number: 
 				N/A
 			</p>
-			<br />
+			<br /><br />
 		</div>
 
 		<div class="income">
@@ -202,7 +203,7 @@
 			<table class="contactInfo">
 				<tr class="info">
 					<td width="30%"><%= @household.fillerName %></td>
-					<td width="50%" class="fancy"><%= @household.signature %></td>
+					<td width="50%" class="fancy"><%= @household.signature %></td> 
 					<td><%= @household.created_at.strftime("%A, %d %^b %Y") %></td>
 				</tr>
 				<tr>

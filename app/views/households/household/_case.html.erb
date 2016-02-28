@@ -12,7 +12,7 @@ Click "Dont Receive Assistance" if this doesn't apply to you.
 </div>
 
 <!-- Link to open the modal -->
-<p class="emojiHelp"><a href="#caseModal" rel="modal:open">&#128533;why?</a></p>
+<p class="emojiHelp"><a href="#caseModal" rel="modal:open"><%= image_tag('confused.png') %></a></p>
 
 
 <h3>Does anyone in the house receive assistance from SNAP, TANF, or FDPIR?</h3>
@@ -20,21 +20,31 @@ Click "Dont Receive Assistance" if this doesn't apply to you.
 <div class="hasCaseNum">
 	<h5>Please provide a case number so we can expedite your packet!</h5>
 	<div class="group">      
-		<%= f.text_field :casenum, :size=>"20", :maxlength=>"30", :autofocus => true %><button type="button" id="noCase">Don't Receive Assistance</button>
-    	<span class="bar"></span>
+		<%= f.text_field :casenum, :size=>"20", :maxlength=>"30", :autofocus => true %><br/><br/><br/>
+		<a id="noCase" class="nextBtnOr">Doesn't Apply</a><a id="yesCaseAdd" class="nextBtnBlk">Add Case Number</a>
+    	<span class="bar-c"></span>
     	<label>Case Number</label>
 	</div>
-	<%= f.submit "Submit Case Number", class: "nextBtn" %>
 </div>
 
 <div class="finishCaseNum" style="display:none;">
-	<h5>No problem. This does not affect eligibility.</h5>
-	<%= f.submit "Go to Kids Section", class: "nextBtn" %>
+	<h3>No problem. This does not affect eligibility.</h3><br/>
+	<a id="notApplyC" class="nextBtnBlk">Next</a>
 </div>
 
 <script>
+
 	$("#noCase").click(function(){
         $(".finishCaseNum").show();
         $(".hasCaseNum").hide();
     });
+    
+	$("#notApplyC").click(function(){
+		$.fn.fullpage.moveSlideRight();
+	});
+	
+	$("#yesCaseAdd").click(function(){
+		$.fn.fullpage.moveSlideRight();
+	});
+	
 </script>

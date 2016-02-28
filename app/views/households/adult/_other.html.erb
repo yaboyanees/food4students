@@ -1,32 +1,44 @@
-	<div class="otherCalc">
-		<h3>Does <span id="adultName6"><%= @household.fillerName %></span> Get Money From Other Income Streams such as Investments, Property Income, and/or outside money from family?</h3>
-		<h4>
-			Gets $<input type="text" name="other" value="" placeholder="100">
-			<select id="otherFreqVal">
-				<option value="52">weekly</option>
-				<option value="26">every two weeks</option>
-				<option value="24">twice a month</option>
-				<option value="12">monthly</option>
-			</select>
-			<br /><br />	
-			which is roughly a gross annual income of $<input type="text" name="otherTotal" id="otherTotal" value="" style="border: none;" readonly>
-		</h4><br />	
-		<%= a.hidden_field :other, :id=>"otherTotal" %>
-		<%= a.hidden_field :household_id, :value => @household.id %><br />
-		<a id="noOther" class="noOther">No Other Income</a> <a id="keepMoving" class="nextBtnBlk">Done</a> 
-	</div>
-
-	<div class="aCalcComplete" style="display:none;">
-		<h3>Great <%= @household.fillerName %>, we got all of it!</h3><br/><br/>
-		<%= a.submit "Add to Family", class: "nextBtn" %>
-	</div>
+<div class="otherCalc">
+	<h3>From Other Sources <span class="showAnnOther" style="display:none;">: $<input type="text" name="otherTotal" id="otherTotal" value="" style="border: none;" readonly></span><a class="toggleOther">Details</a></h3></h3>
+	<h4 class="otherScale" style="display:none;">
+		<span id="adultName8"><%= @household.fillerName %></span> Gets $<input type="text" name="other" value="" placeholder="100">
+		<select id="otherFreqVal">
+			<option value="0">how often?</option>
+			<option value="52">weekly</option>
+			<option value="26">every two weeks</option>
+			<option value="24">twice a month</option>
+			<option value="12">monthly</option>
+		</select>
+		<br /><br />	
+		which is roughly a gross annual income of $<input type="text" name="otherTotal" id="otherTotal" value="" style="border: none;" readonly>
+	</h4>	
 	
+	<%= a.hidden_field :other, :id=>"otherTotal" %>
+</div>
+
+
 <script>
 
 	$("#otherFreqVal").change(function() {
 		var a = $('input[name="other"]').val();
 		var b = $(this).val();
 		$('input[id="otherTotal"]').val(a * b);
+		$('.otherScale').fadeOut(2000);
+		$('.showAnnOther').show();
+		$(".toggleOther").show();
+		
+		$('.otherCalc').toggleClass("active");
+	});
+	
+	$(".toggleOther").click(function() {
+        $('.otherCalc').toggleClass("active");
+	
+		$('.otherScale').toggle();
+		$('.showAnnOther').show();
 	});
 	
 </script>
+
+
+
+	

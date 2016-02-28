@@ -1,28 +1,41 @@
-	<h3>Does <span id="adultName3"><%= @household.fillerName %></span> Get Money From Work to include strike benefits?</h3>
-
-	<div class="jobCalc">
-			<h4>
-				Earns $<input type="text" name="job" value="" placeholder="100">
-				<select id="jobFreqVal">
-					<option value="52">weekly</option>
-					<option value="26">every two weeks</option>
-					<option value="24">twice a month</option>
-					<option value="12">monthly</option>
-				</select>
-				<br /><br />	
-				which is roughly a gross annual income of $<input type="text" name="jobTotal" id="jobTotal" value="" style="border: none;" readonly>
-			</h4><br />	
-		<%= a.hidden_field :job, :id=>"jobTotal" %>
-		<a id="moveSlideRight" class="noJob" href="#1/4">No Job</a> <a id="moveSlideRight" class="nextBtn" href="#1/4">Next</a>
-	</div>
+<div class="workCalc">
+	<h3>From Wages/Earnings <span class="showAnnWork" style="display:none;">: $<input type="text" name="workTotal" id="workTotal" value="" style="border: none;" readonly></span><a class="toggleWork">Details</a></h3></h3>
+	<h4 class="workScale" style="display:none;">
+		<span id="adultName6"><%= @household.fillerName %></span> Gets $<input type="text" name="work" value="" placeholder="100">
+		<select id="workFreqVal">
+			<option value="0">how often?</option>
+			<option value="52">weekly</option>
+			<option value="26">every two weeks</option>
+			<option value="24">twice a month</option>
+			<option value="12">monthly</option>
+		</select>
+		<br /><br />	
+		which is roughly a gross annual income of $<input type="text" name="workTotal" id="workTotal" value="" style="border: none;" readonly>
+	</h4>	
+	
+	<%= a.hidden_field :job, :id=>"workTotal" %>
+</div>
 
 
 <script>
 
-	$("#jobFreqVal").change(function() {
-		var a = $('input[name="job"]').val();
+	$("#workFreqVal").change(function() {
+		var a = $('input[name="work"]').val();
 		var b = $(this).val();
-		$('input[id="jobTotal"]').val(a * b);
+		$('input[id="workTotal"]').val(a * b);
+		$('.workScale').fadeOut(2000);
+		$('.showAnnWork').show();
+		$(".toggleWork").show();
+		
+		$('.workCalc').toggleClass("active");
+	});
+	
+	$(".toggleWork").click(function() {
+        $('.workCalc').toggleClass("active");
+	
+		$('.workScale').toggle();
+		$('.showAnnWork').show();
 	});
 	
 </script>
+	

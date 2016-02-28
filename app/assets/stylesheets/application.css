@@ -36,9 +36,7 @@ body {
 
 /* Modal Styles */
 
-p.emojiHelp{
-	margin: -50px 0 0 0 !important;
-	padding: 0 10px 20px 0;
+p.emojiHelp, p.emojiHelp1, p.emojiHelpKids, p.emojiHelpK, p.emojiH{
 	width: 100%;
 	text-align: right !important;
 	font-size:18px;
@@ -47,6 +45,28 @@ p.emojiHelp{
 	text-align: justify;
     text-justify: inter-word;
 }
+p.emojiHelp {
+	margin: 10px 0 0 0 !important;
+	padding: 10px 10px 30px 0;
+}
+p.emojiH {
+	margin: 10px 0 0 0 !important;
+	padding: 10px 10px 0 0;
+}
+
+p.emojiHelp1{
+	margin: -50px 0 0 0 !important;
+	padding: 0 10px 20px 0;
+}
+p.emojiHelpKids{
+	margin: -5px 0 0 0 !important;
+	padding: 10px 10px 20px 0;
+}
+p.emojiHelpK{
+	margin: 50px 0 0 0 !important;
+	padding: 0 10px 20px 0;
+}
+
 .explanation{
 	padding: 0 0 50px 0;
 }
@@ -96,7 +116,7 @@ p.emojiHelp{
   z-index: 1;
   padding: 20px;
   box-sizing: border-box;
-  background-color: rgba(0,0,0,0.75);
+  background-color: rgba(0,0,0,0.8);
   text-align: center;
 }
 .blocker:before{

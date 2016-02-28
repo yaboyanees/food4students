@@ -11,7 +11,7 @@
 </div>
 
 <!-- Link to open the modal -->
-<p class="emojiHelp"><a href="#lastModal" rel="modal:open">&#128533;why?</a></p>
+<p class="emojiHelp"><a href="#lastModal" rel="modal:open"><%= image_tag('confused.png') %></a></p>
 
 
 <h3>Do you or any Adults living with you have a Social Security Number that you can provide?</h3>
@@ -19,15 +19,15 @@
 <div class="ssnLast4">
 	<h5>Please provide last four of SSN</h5>
 	<div class="group">      
-		<%= f.text_field :four, :size=>"4", :maxlength=>"4", :autofocus => true %><button type="button" id="no4">Not Able to Provide</button><br/><br/><br/>
-		<a id="moveSlideRight" class="nextBtnSS" href="#1/2">Next</a> 
+		<%= f.text_field :four, :size=>"4", :maxlength=>"4", :autofocus => true %><br/><br/><br/>
+		<a id="no4" class="nextBtnOr">Not Able to Provide</a><a id="moveSlideRight" class="nextBtnBlk" href="#1/2">Next</a> 
 		<span class="bar-4"></span>
 		<label>Last Four</label>
 	</div>
 </div>
 
 <div class="noSSN" style="display:none;">
-	<h5>No problem. This does not affect eligibility.</h5>
+	<h3>No problem. This does not affect eligibility.</h3>
 	<a id="moveSlideRight" class="nextBtn" href="#1/2">Move Forward</a>
 </div>
 

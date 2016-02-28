@@ -2,6 +2,15 @@ class HouseholdsController < ApplicationController
   #set household id for the following actions
   before_action :set_household, only: [:edit, :show, :update, :kids, :adults, :optionals, :thank_you]
 
+  def index
+  	if params[:rank].present? && params[:year].present?
+  		@result = Paygrade.select("pay").where(["rank LIKE ?", "%#{params[:rank]}%"]).where(["year LIKE ?", "%#{params[:year]}%"])
+  	else 
+  	end
+  	@ranks = Paygrade.uniq.pluck("rank")
+  	@years = Paygrade.uniq.pluck("year")
+  end
+
   def show
 	@adult = Adult.new
 	@child = Child.new
@@ -51,6 +60,7 @@ class HouseholdsController < ApplicationController
 	@children = @household.children
 	@adults = @household.adults  
 	@optionals = @household.optionals	
+	@households = @household.present?
   end
 
   def optionals
@@ -103,7 +113,7 @@ class HouseholdsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def household_params
-      params.require(:household).permit(:street, :city, :state, :zip, :phone, :email, :filler_name, :four, :signature, :casenum, :status, :reviewed_by,
+      params.require(:household).permit(:street, :city, :state, :zip, :phone, :email, :filler_name, :four, :signature, :casenum, :categorical, :status, :reviewed_by,
       adults_attributes:[:id, :name, :job, :cs, :ret, :pa, :pen, :ali, :se, :mil, :other, :household_id], 
       children_attributes:[:id, :name, :student, :foster, :hmr, :hs, :pay, :ss, :tru, :pen, :ann, :sm, :household_id],
 	  optionals_attributes:[:id, :hl, :indy, :azn, :blk, :pac, :wh, :household_id])

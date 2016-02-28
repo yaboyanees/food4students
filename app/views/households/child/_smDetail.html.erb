@@ -1,9 +1,10 @@
-	<h3>Does <span id="kidName6"></span> Get Spending Money From Anyone Outside the Household like an Uncle/Aunt?</h3>
-
 	<div class="smCalc">
-			<h4>
-				Gets $<input type="text" name="sm" value="" placeholder="100">
+		<h3>From Allowances <span class="showAnnSm" style="display:none;">: $<input type="text" name="smTotal" id="smTotal" value="" style="border: none;" readonly></span><a class="toggleSm">Details</a></h3>
+
+			<h4 class="smScale" style="display:none;">
+				<span id="kidName6"></span> gets $<input type="text" name="sm" value="" placeholder="100"> 
 				<select id="smFreqVal">
+					<option value="0">how often?</option>
 					<option value="52">weekly</option>
 					<option value="26">every two weeks</option>
 					<option value="24">twice a month</option>
@@ -11,9 +12,8 @@
 				</select>
 				<br /><br />	
 				which is roughly $<input type="text" name="smTotal" id="smTotal" value="" style="border: none;" readonly> annually
-			</h4><br />	
+			</h4>
 		<%= c.hidden_field :sm, :id=>"smTotal" %>
-		<a id="moveSlideRight" class="noWork">No Allowance</a><a id="moveSlideRight" class="nextBtn" href="#1/7">Next</a>
 	</div>
 
 <script>
@@ -22,6 +22,18 @@
 		var a = $('input[name="sm"]').val();
 		var b = $(this).val();
 		$('input[id="smTotal"]').val(a * b);
+		$('.smScale').fadeOut(2000);
+		$('.showAnnSm').show();
+		$(".toggleSm").show();
+		
+		$('.smCalc').toggleClass("active");
+	});
+	
+	$(".toggleSm").click(function() {
+		$('.smScale').toggle();
+		$('.showAnnSm').show();
+		
+        $('.smCalc').toggleClass("active");
 	});
 	
 </script>

@@ -1,24 +1,36 @@
-	<h3>If <span id="adultName10"><%= @household.fillerName %></span> is Self-Employed, Please provide Total Revenue and Expenses?</h3>
-
 	<div class="seCalc">
-			<h4>
-				Generates $<input type="text" name="seRev" value="" placeholder="100"> in revenue 
-				and has $<input type="text" id="seExp" value="" placeholder="100"> in total expenses
-	
-				<br /><br />	
-				which is a net income of roughly $<input type="text" name="seTotal" id="seTotal" value="" style="border: none;" readonly>
-			</h4><br />	
+		<h3>From Self Employment <span class="showAnnSe" style="display:none;">: $<input type="text" name="seTotal" id="seTotal" value="" style="border: none;" readonly></span><a class="toggleSe">Details</a></h3></h3>
+		<h4 class="seScale" style="display:none;">
+			<span id="adultName12"><%= @household.fillerName %></span> Generates $<input type="text" name="seRev" value="" placeholder="100"> in total revenue 
+			and has $<input type="text" id="seExp" value="" placeholder="100"> in total expenses
+
+			<br /><br />	
+			which is a net income of roughly $<input type="text" name="seTotal" id="seTotal" value="" style="border: none;" readonly>
+		</h4><br />	
 		<%= a.hidden_field :se, :id=>"seTotal" %>
-		 <a id="moveSlideRight" class="nose" href="#1/10">Not Self-Employed</a><a id="moveSlideRight" class="nextBtn" href="#1/10">Next</a>
 	</div>
 
-
 <script>
-
 	$("#seExp").keyup(function() {
 		var a = $('input[name="seRev"]').val();
 		var b = $(this).val();
 		$('input[id="seTotal"]').val(a - b);
+		$('.seScale').fadeOut(2500);
+		$('.showAnnSe').show();
+		$(".toggleSe").show();
+		
+	});
+
+	$("#seExp").blur(function() {
+		$('.seCalc').toggleClass("active");
+	});
+	
+	$(".toggleSe").click(function() {
+        $('.seCalc').toggleClass("active");
+	
+		$('.seScale').toggle();
+		$('.showAnnSe').show();
 	});
 	
 </script>
+	

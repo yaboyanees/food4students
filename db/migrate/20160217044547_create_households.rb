@@ -11,6 +11,7 @@ class CreateHouseholds < ActiveRecord::Migration
       t.string :four
       t.string :signature
       t.string :casenum
+      t.boolean :categorical
       t.string :reviewed_by
       t.string :status
 

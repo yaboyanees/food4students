@@ -1,15 +1,34 @@
-<h3>Please fill us in on our newest family members First and Last Name:</h3>
+<!-- Modal window -->
+<div id="aNameModal" style="display:none;">
+ <p class="explanationB">
+	We need the adult's First and Last Name as long as they live in the household with you and share in the income/expenses
+	of the household. Fill out like below:				
+ </p>
+ <p class="inputC">
+	Anees Merzi
+ </p>
+ <p class="whyA">Why?</p>
+ <p class="whyDetailsA">
+	For a household to become eligible for our program based on income, we must know who lives in the household and
+	shares in the income and expenses of the household.
+ </p>
+</div>
+
+<!-- Link to open the modal -->
+<p class="emojiHelp1"><a href="#aNameModal" rel="modal:open"><%= image_tag('confused.png') %></a></p>
+<br /><br /><br />
+<h3>Please provide us with this adult's First & Last Name</h3>
 
     <div class="group">      
-    	<%= a.text_field :name, :id=>"aName", :size=>"25", :maxlength=>"35", :autofocus => true %>
+    	<%= a.text_field :name, :id=>"aName", :size=>"25", :maxlength=>"35", :autofocus => true, :onkeyup=> "catchaName()" %>
     	<span class="bar"></span>
     	<label>Full Name</label><br/><br/>    	
 	</div>
-	<a id="moveSlideRight" class="nextBtnBlk" href="#1/1">Next</a>
+	<a id="moveSlideRight" class="nextBtnBlk" href="#1/2">Next</a>
 	
 <script>
 
-	function catchName(){
+	function catchaName(){
 		var el1 = document.getElementById("aName");
 		var el2 = document.getElementById("adultName1");
 		var el3 = document.getElementById("adultName2");
@@ -20,7 +39,8 @@
 		var el8 = document.getElementById("adultName7");
 		var el9 = document.getElementById("adultName8");
 		var el10 = document.getElementById("adultName9");
-		var el11 = document.getElementById("adultName9");
+		var el11 = document.getElementById("adultName10");
+		var el12 = document.getElementById("adultName11");
 		var str = el1.value;
 		var fname = str.substr(0,str.indexOf(' '));
 		el2.innerHTML = fname;
@@ -33,6 +53,7 @@
 		el9.innerHTML = fname;
 		el10.innerHTML = fname;
 		el11.innerHTML = fname;
+		el12.innerHTML = fname;
 	}
 
 </script>

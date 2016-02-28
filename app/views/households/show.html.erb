@@ -20,7 +20,7 @@
 			students up to and including grade 12
 		</h2>
 
-		<% if @household.casenum.present? %>
+		<% if @household.casenum.present? || @household.categorical == true %>
 		
 			<table class="children">
 			  <tr>
@@ -245,5 +245,5 @@
 
 
 <script>
-	$("#flash_notice" ).fadeOut(2500);
+	$("#flash_notice").fadeOut(2500);
 </script>

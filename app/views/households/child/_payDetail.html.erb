@@ -1,20 +1,18 @@
-	<h3>Does <span id="kidName4"></span> Get Money From Work?</h3>
-
 	<div class="payCalc">
-			<h4>
-				Earns $<input type="text" name="pay" value="" placeholder="100">
-				<select id="payFreqVal">
-					<option value="0">selct frequency</option>
-					<option value="52">weekly</option>
-					<option value="26">every two weeks</option>
-					<option value="24">twice a month</option>
-					<option value="12">monthly</option>
-				</select>
-				<br /><br />	
-				which is roughly $<input type="text" name="payTotal" id="payTotal" value="" style="border: none;" readonly> annually
-			</h4><br />	
+		<h3>From Work <span class="showAnnPay" style="display:none;">: $<input type="text" name="payTotal" id="payTotal" value="" style="border: none;" readonly></span><a class="togglePay">Details</a></h3>
+		<h4 class="payScale" style="display:none;">
+			<span id="kidName4"></span> earns $<input type="text" name="pay" value="" placeholder="100">
+			<select id="payFreqVal">
+				<option value="0">how often?</option>
+				<option value="52">weekly</option>
+				<option value="26">every two weeks</option>
+				<option value="24">twice a month</option>
+				<option value="12">monthly</option>
+			</select>
+			<br /><br /><br />
+			which is roughly $<input type="text" name="payTotal" id="payTotal" value="" style="border: none;" readonly> annually
+		</h4>
 		<%= c.hidden_field :pay, :id=>"payTotal" %>
-		<a id="moveSlideRight" class="noWork" href="#1/4">Does Not Make Money</a> <a id="moveSlideRight" class="nextBtn" href="#1/4">Next</a>  
 	</div>
 
 
@@ -24,6 +22,18 @@
 		var a = $('input[name="pay"]').val();
 		var b = $(this).val();
 		$('input[id="payTotal"]').val(a * b);
+		$('.payScale').fadeOut(2000);
+		$('.showAnnPay').show();
+		$(".togglePay").show();
+		
+        $('.payCalc').toggleClass("active");
+	});
+	
+	$(".togglePay").click(function() { 
+        $('.payCalc').toggleClass("active");
+        
+		$('.payScale').toggle();
+		$('.showAnnPay').show();
 	});
 	
 </script>

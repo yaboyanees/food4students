@@ -5,24 +5,22 @@
 		
 				<div class="slide">
 					<div class="qArea">
-						<div class="aForm" style="display:none;">
-							<%= render 'households/adult/name', a: a %>
-						</div>
-				
 						<div class="adultExist">
 							<h3>We are tracking the following adults in the household:</h3>
 							<% @adults.each do |a| %>
 								<h6><%= a.adultName %></h6>
-							<% end %><br /><br />
+							<% end %><br /><br /><br />
 							<%= link_to "Done Adding Adults", optionals_household_path(@household), class: "nextBtnOr" %>
-							<a id="moreAdults" class="nextBtnBlk" href="#">Add Adult</a>
+							<a id="moreAdults" class="nextBtnBlk">Add Adult</a>
 						</div>
 					</div>
 				</div>
-
+				
 				<div class="slide">
 					<div class="qArea">
-						<%= render 'households/adult/money', a: a %>
+						<div class="aForm">
+							<%= render 'households/adult/name', a: a %>
+						</div>
 					</div>
 				</div>
 				
@@ -31,86 +29,84 @@
 						<%= render 'households/adult/military', a: a %>
 					</div>
 				</div>
+	
 				
 			<% else %>
 		
 				<div class="slide">
 					<div class="qArea">
+						<!-- Modal window -->
+						<div id="adModal" style="display:none;">
+						<p class="explanationA">
+							An Adult is Anyone who is living with you and shares income and expenses, even if not related, and even if they do not have income of their own. This does not include people who live in the household that are not supported by the household‟s income and/or do not contribute income to your household.
+						 </p>
+						 <p class="whyA">Why?</p>
+						 <p class="whyDetailsA">
+							We need this information to accurately determine eligibility based on household size and annual income.
+						</p>
+						</div>
+						
+						<!-- Link to open the modal -->
+						<p class="emojiHelp"><a href="#adModal" rel="modal:open"><%= image_tag('confused.png') %></a></p>
+					
 						<div class="originalAview">
 							<h3>
-								Last step! We need to know ALL adults that live with you and  
-								share income and expenses.
-							</h3>
+								Last step <%= @household.fillerName %>! We need to know about ALL adults that live with you and  
+								share income/expenses with the household. This could be someone like an Uncle or friend.
+							</h3><br/>
 							<h5>Let's Start with You first: <a id="moveSlideRight" class="nextBtnBlk" href="#household/1">Continue</a></h5>
 						</div>
 					</div>
 				</div>								
-	
-				<div class="slide">
-					<div class="qArea">
-						<%= render 'households/adult/moneyApplicant', a: a %>
-					</div>
-				</div>
-			
+
 				<div class="slide">
 					<div class="qArea">
 						<%= render 'households/adult/milApplicant', a: a %>
 					</div>
 				</div>
+			
 				
 			<% end %>
 			
+				<div class="slide">
+					<div class="qArea">
+						<%= render 'households/adult/money', a: a %>
+					</div>
+				</div>
 			
-			<div class="slide">
-				<div class="qArea">
-					<%= render 'households/adult/job', a: a %>
+			<div class="slide" id="jobCH"> 
+				<div class="qArea" style="overflow-x: scroll !important; padding-bottom: 100px;">
+					<!-- Modal window -->
+					<div id="annualModal" style="display:none;">
+					<p class="explanationA">
+						We need you to report the current amount received and the frequency 
+						at which it is received. Report all amounts that are received before taxes/deductions.
+					</p>
+					 <p class="whyA">Why?</p>
+					 <p class="whyDetailsA">
+						We need this information because it directly impacts your family receiving assistance. 
+						Current income is used to determine eligibility. 
+					</p>
+					</div>
+					
+					<!-- Link to open the modal -->
+					<p class="emojiH"><a href="#annualModal" rel="modal:open"><%= image_tag('confused.png') %></a></p>
+					
+					<h3>Thanks for marking those income types for <span id="adultName11"><%= @household.fillerName %></span>. 
+					Click the 'details' button to report GROSS incomes for each pay type.</h3>
+					<div class="workCalculate" style="display:none;">	<%= render 'households/adult/job', a: a %></div>
+					<div class="aliCalculate" style="display:none;">	<%= render 'households/adult/ali', a: a %></div>
+					<div class="csCalculate" style="display:none;">		<%= render 'households/adult/cs', a: a %></div>
+					<div class="retCalculate" style="display:none;">	<%= render 'households/adult/ret', a: a %></div>
+					<div class="paCalculate" style="display:none;">		<%= render 'households/adult/pa', a: a %></div>
+					<div class="pCalculate" style="display:none;">		<%= render 'households/adult/pen', a: a %></div>
+					<div class="seCalculate" style="display:none;">		<%= render 'households/adult/se', a: a %></div>
+					<div class="otherCalculate" style="display:none;">	<%= render 'households/adult/other', a: a %></div>
+					<br /><br /><br />
+					<%= a.submit "Income Reporting Complete", class: "nextBtn" %>
 				</div>
-			</div>
-	
-			<div class="slide">
-				<div class="qArea">
-					<%= render 'households/adult/ali', a: a %>
-				</div>
-			</div>
-	
-			<div class="slide">
-				<div class="qArea">
-					<%= render 'households/adult/cs', a: a %>
-				</div>
-			</div>
-	
-			<div class="slide">
-				<div class="qArea">
-					<%= render 'households/adult/ret', a: a %>
-				</div>
-			</div>
-	
-			<div class="slide">
-				<div class="qArea">
-					<%= render 'households/adult/pa', a: a %>
-				</div>
-			</div>	
-	
-			<div class="slide">
-				<div class="qArea">
-					<%= render 'households/adult/pen', a: a %>
-				</div>
-			</div>
-	
-			<div class="slide">
-				<div class="qArea">
-					<%= render 'households/adult/se', a: a %>
-				</div>
-	
-			</div>	
-	
-			<div class="slide">
-				<div class="qArea">
-					<%= render 'households/adult/other', a: a %>
-				</div>
-			</div>			
-			
-	
+			</div>		
+				
 		<% end %>
 	</div>
 	<div id="btmProgress">
@@ -121,8 +117,11 @@
 <script>
 
 	$("#moreAdults").click(function(){
-		$(".aForm").show();
-		$(".adultExist").hide();
+		$.fn.fullpage.moveSlideRight();
+	});	
+
+	$("#incomeBreakdown").click(function(){
+		$.fn.fullpage.moveSlideRight();
 	});	
 
 	$("#addApplicant").click(function(){
@@ -136,27 +135,13 @@
 	});
 	
 	$(".yesReceiveMoney").click(function(){
-		$.fn.fullpage.moveSlideRight();
+		$(".receiveMoney").hide();
+		$(".howIncome").show();
 	});		
-			
-	$(".noWork").click(function(){
-		$.fn.fullpage.moveSlideRight();
-	});	
-
-	$("#keepMoving").click(function(){
-		$(".otherCalc").hide();
-		$(".aCalcComplete").show();
-	});
-	
-	$("#noOther").click(function(){
-		$(".otherCalc").hide();
-		$(".aCalcComplete").show();
-	});
 
 	$("#yesMil").click(function(){
 		$(".mil").hide();
 		$(".milCalc").show();
 	});
-
 
 </script>

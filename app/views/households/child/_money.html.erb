@@ -1,5 +1,21 @@
+	<!-- Modal window -->
+	<div id="moneyModal" style="display:none;">
+	 <p class="explanation">
+		This is any Money received from outside the household to include family members giving allowances 
+		directly to this child. We need you to mark all of the current ways this child makes/receives money as applicable. 			
+	 </p>
+	 <p></p>
+	 <p class="whyA">Why?</p>
+	 <p class="whyDetailsA">
+		This helps us determine income eligibility for our program. 
+	 </p>
+	</div>
+
+	<!-- Link to open the modal -->
+	<p class="emojiHelpKids"><a href="#moneyModal" rel="modal:open"><%= image_tag('confused.png') %></a></p>
+	
 	<div class="getMoney">	
-		<h3>Does <span id="kidName2"></span> get money from allowances, work, or other sources outside the household?</h3><br/><br/>	
+		<h3>Does <span id="kidName2"></span> currently get money from allowances, work, or other sources outside the household?</h3><br/><br/>	
 		<a class="noMoney">No</a> 
 		<a class="yesMoney">Yes</a> 	
 	</div>
@@ -9,3 +25,44 @@
 		<%= c.hidden_field :household_id, :value => @household.id %><br/>
 		<%= c.submit "Add to Family", class: "nextBtn" %>
 	</div>
+	
+	<div class="howMoney" style="display:none;">
+		<h3>Please Mark all that apply to how <span id="kidName10"></span> gets money from sources outside the household</h3>
+		<div class="cStatus">
+			<h6><input type="checkbox" id="JobCB">Job/Work</h6>
+			<h6><input type="checkbox" id="PensionCB">Pension Plan</h6>
+			<h6><input type="checkbox" id="AllowanceCB">Spending Money</h6>
+			<h6><input type="checkbox" id="SSCB">Social Security Benefits</h6>
+			<h6><input type="checkbox" id="AnnuityCB">An Annuity</h6>
+			<h6><input type="checkbox" id="TrustCB">Trust Fund</h6>
+		</div>
+		<br/><br/><br/>
+		<a id="payBreakdown" class="nextBtnBlk" href="#1/4">Next</a>
+	</div>
+	
+	<script>
+			
+		$('#JobCB').change(function(){
+			$(".jobCalculate").toggle();
+		}); 
+	
+		$('#PensionCB').change(function(){
+			$(".penCalculate").toggle();
+		}); 
+		
+		$('#AllowanceCB').change(function(){
+			$(".smCalculate").toggle();
+		});
+		
+		$('#SSCB').change(function(){
+			$(".ssCalculate").toggle();
+		});
+		
+		$('#AnnuityCB').change(function(){
+			$(".annCalculate").toggle();
+		});
+		
+		$('#TrustCB').change(function(){
+			$(".truCalculate").toggle();
+		});
+	</script>

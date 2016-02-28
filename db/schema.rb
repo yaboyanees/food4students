@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 20160223205503) do
     t.string   "four"
     t.string   "signature"
     t.string   "casenum"
+    t.boolean  "categorical"
     t.string   "reviewed_by"
     t.string   "status"
     t.datetime "created_at",  null: false

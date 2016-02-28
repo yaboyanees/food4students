@@ -1,7 +1,8 @@
 class Child < ActiveRecord::Base
 	#M-1 relationship with household
 	belongs_to :household
- 
+  	
+
  #split fullname into first, mi, last
  def nameSplit
 	#firstname

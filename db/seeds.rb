@@ -119,3 +119,16 @@ Paygrade.create(rank: 'O3', year: '4+ years', pay: '5287')
 Paygrade.create(rank: 'O3', year: '6+ years', pay: '5540')
 Paygrade.create(rank: 'O3', year: '8+ years', pay: '5818')
 Paygrade.create(rank: 'O3', year: '10+ years', pay: '5998')
+
+
+
+
+
+
+
+
+
+
+
+
+

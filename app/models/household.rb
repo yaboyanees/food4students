@@ -19,7 +19,7 @@ class Household < ActiveRecord::Base
 
  	#save city & state before saving record
 	before_save :zipConvert
-
+  	
 
 	#convert zipcode to city & state
  	def zipConvert

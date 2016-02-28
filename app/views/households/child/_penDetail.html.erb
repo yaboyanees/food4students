@@ -1,10 +1,10 @@
-	<h3>Does <span id="kidName5"></span> Get Money From a Pension?</h3>
-
 	<div class="penCalc">
-			<h4>
-				Gets $<input type="text" name="pen" value="" placeholder="100">
+		<h3>From Pension <span class="showAnnPen" style="display:none;">: $<input type="text" name="penTotal" id="penTotal" value="" style="border: none;" readonly></span><a class="togglePen">Details</a></h3>
+
+			<h4 class="penScale" style="display:none;">
+				<span id="kidName5"></span> gets $<input type="text" name="pen" value="" placeholder="100">
 				<select id="penFreqVal">
-					<option value="0">selct frequency</option>
+					<option value="0">how often?</option>
 					<option value="52">weekly</option>
 					<option value="26">every two weeks</option>
 					<option value="24">twice a month</option>
@@ -12,9 +12,8 @@
 				</select>
 				<br /><br />	
 				which is roughly $<input type="text" name="penTotal" id="penTotal" value="" style="border: none;" readonly> annually
-			</h4><br />	
+			</h4>
 		<%= c.hidden_field :pen, :id=>"penTotal" %>
-		<a id="moveSlideRight" class="noWork">Does Not Get Pension</a><a id="moveSlideRight" class="nextBtn" href="#1/6">Next</a>
 	</div>
 
 
@@ -24,6 +23,20 @@
 		var a = $('input[name="pen"]').val();
 		var b = $(this).val();
 		$('input[id="penTotal"]').val(a * b);
+		$('.penScale').fadeOut(2000);
+		$('.showAnnPen').show();
+		$(".togglePen").show();
+		
+		$('.penCalc').toggleClass("active");
 	});
 	
+	$(".togglePen").click(function() {
+        $('.penCalc').toggleClass("active");
+        
+		$('.penScale').toggle();
+		$('.showAnnPen').show();
+	});
+	
+	
 </script>
+

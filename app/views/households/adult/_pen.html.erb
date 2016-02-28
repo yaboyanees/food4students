@@ -1,20 +1,20 @@
-	<h3>Does <span id="adultName8"><%= @household.fillerName %></span> Get Money from A Pension?</h3>
-
-	<div class="pCalc">
-			<h4>
-				Earns $<input type="text" name="p" value="" placeholder="100">
-				<select id="pFreqVal">
-					<option value="52">weekly</option>
-					<option value="26">every two weeks</option>
-					<option value="24">twice a month</option>
-					<option value="12">monthly</option>
-				</select>
-				<br /><br />	
-				which is roughly a gross annual income of $<input type="text" name="pTotal" id="pTotal" value="" style="border: none;" readonly>
-			</h4><br />	
-		<%= a.hidden_field :pen, :id=>"penTotal" %>
-		<a id="moveSlideRight" class="nopen" href="#1/9">Does Not Apply</a> <a id="moveSlideRight" class="nextBtn" href="#1/9">Next</a> 
-	</div>
+<div class="pCalc">
+	<h3>From Pension <span class="showAnnP" style="display:none;">: $<input type="text" name="pTotal" id="pTotal" value="" style="border: none;" readonly></span><a class="toggleP">Details</a></h3></h3>
+	<h4 class="pScale" style="display:none;">
+		<span id="adultName10"><%= @household.fillerName %></span> Gets $<input type="text" name="p" value="" placeholder="100">
+		<select id="pFreqVal">
+			<option value="0">how often?</option>
+			<option value="52">weekly</option>
+			<option value="26">every two weeks</option>
+			<option value="24">twice a month</option>
+			<option value="12">monthly</option>
+		</select>
+		<br /><br />	
+		which is roughly a gross annual income of $<input type="text" name="pTotal" id="pTotal" value="" style="border: none;" readonly>
+	</h4>	
+	
+	<%= a.hidden_field :pen, :id=>"pTotal" %>
+</div>
 
 
 <script>
@@ -23,6 +23,18 @@
 		var a = $('input[name="p"]').val();
 		var b = $(this).val();
 		$('input[id="pTotal"]').val(a * b);
+		$('.pScale').fadeOut(2000);
+		$('.showAnnP').show();
+		$(".toggleP").show();
+		
+		$('.pCalc').toggleClass("active");
+	});
+	
+	$(".toggleP").click(function() {
+        $('.pCalc').toggleClass("active");
+	
+		$('.pScale').toggle();
+		$('.showAnnP').show();
 	});
 	
 </script>

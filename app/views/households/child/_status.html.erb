@@ -1,3 +1,17 @@
+<!-- Modal window -->
+<div id="stModal" style="display:none;">
+<p class="explanationA">
+	We need you to mark all that describe this child: Foster, Head Start, Homeless, Migrant, Runaway.
+	Go to next step if this doesn't apply.
+</p>
+ <p class="whyA">Why?</p>
+ <p class="whyDetailsA">
+	This information helps us determine categorical eligibility if your household qualifies.
+</p>
+</div>
+
+<!-- Link to open the modal -->
+<p class="emojiHelpK"><a href="#stModal" rel="modal:open"><%= image_tag('confused.png') %></a></p>
 <div class="cStatusField">
 	<h3>Please Mark all that describe <span id="kidName1"></span></h3>
 	<div class="cStatus">
@@ -6,6 +20,6 @@
 		<h6><%= c.check_box :hmr %>Homeless/Migrant/Runaway</h6>
 		<h6><%= c.check_box :hs %>Head Start</h6>
 	</div>
-	<br/><br/>
-    <a id="moreChildren" class="nextBtnBlk" href="#1/2">Next</a>
+	<br/><br/><br/>
+    <a id="moreChildren" class="nextBtnBlk" href="#1/3">Next</a>
 </div>
