@@ -21,46 +21,6 @@
 		<a id="yesMil" class="nextBtnBlk">Yes</a>	
 	</div>
 	
-	<div class="milCalc" style="display:none;">
-		<h3>
-			Thank you for your family's Service and Sacrifice!<br />Please Select Current Rank, 
-			Years of Service, and Status
-		</h3><br/><br/><br/>
 		
-		<!-- search form -->
-		<%= form_tag(home_index_path, :method => "get", id: "search-form", :validate=>true) do %>
-			<%= select_tag :rank, options_for_select(@ranks, params[:rank]), :prompt => 'Current Rank' %>
-			<%= select_tag :year, options_for_select(@years, params[:year]), :prompt => 'Years of Service' %>
-			<%= submit_tag "Calculate", :name => nil %>
-		<% end %>
-		
-		<!-- return results after search -->
-		<% if params[:rank].present? && params[:year].present? %>
-		
-			<% if @result.each do |a| %>
-				<%= number_to_currency(a.pay) %>
-			<% end.empty? %>
-				Please provide valid rank and years of service
-				<%= form_tag(home_index_path, :method => "get", id: "search-form", :validate=>true) do %>
-					<%= select_tag :rank, options_for_select(@ranks, params[:rank]), :prompt => 'Current Rank' %>
-					<%= select_tag :year, options_for_select(@years, params[:year]), :prompt => 'Years of Service' %>
-					<%= submit_tag "Calculate", :name => nil %>
-				<% end %>
-			<% end %>
-		
-		<% end %>
-
-		<a id="activeDuty" class="nextBtnOr">Active</a>
-		<a id="nationalGuard" class="nextBtnOr">National Guard</a>
-		<a id="reserves" class="nextBtnOr">Reserves</a>
-		<br /><br /><br/>	
-		
-		<%= a.text_field :mil %>
-		<%= a.hidden_field :name, :value => @household.fillerName %>
-		<a id="moveSlideRight" class="nextBtnBlk" href="#1/2">Next</a> 
-	</div>
-	
-<script>
-
-	
-</script>
+	<%= a.hidden_field :mil, id: "milTotal" %>
+	<%= a.hidden_field :name, :value => @household.fillerName %>

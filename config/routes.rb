@@ -7,7 +7,6 @@ Rails.application.routes.draw do
 	resources :children
 	resources :adults
 	resources :households
-	resources :home
 	
 	resources :legal, path: '/legal'
 	root 'households#new'

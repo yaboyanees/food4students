@@ -2,15 +2,21 @@ class HouseholdsController < ApplicationController
   #set household id for the following actions
   before_action :set_household, only: [:edit, :show, :update, :kids, :adults, :optionals, :thank_you]
 
-  def index
+  def index  	
   	if params[:rank].present? && params[:year].present?
   		@result = Paygrade.select("pay").where(["rank LIKE ?", "%#{params[:rank]}%"]).where(["year LIKE ?", "%#{params[:year]}%"])
   	else 
   	end
-  	@ranks = Paygrade.uniq.pluck("rank")
+  	@pay = Paygrade.all
+  	@ranks = Paygrade.order("rank").uniq.pluck("rank")
   	@years = Paygrade.uniq.pluck("year")
-  end
 
+  	respond_to do |f|
+  		f.html
+  		f.js
+  	end
+  end
+  
   def show
 	@adult = Adult.new
 	@child = Child.new
@@ -61,6 +67,14 @@ class HouseholdsController < ApplicationController
 	@adults = @household.adults  
 	@optionals = @household.optionals	
 	@households = @household.present?
+	
+  	if params[:rank].present? && params[:year].present?
+  		@result = Paygrade.select("pay").where(["rank LIKE ?", "%#{params[:rank]}%"]).where(["year LIKE ?", "%#{params[:year]}%"])
+  	else 
+  	end
+  	@pay = Paygrade.all
+  	@ranks = Paygrade.order("rank").uniq.pluck("rank")
+  	@years = Paygrade.uniq.pluck("year")
   end
 
   def optionals

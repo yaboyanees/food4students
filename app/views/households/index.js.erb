@@ -1,0 +1,4 @@
+<% @result.each do |a| %> 	
+	$("#milResult").append("Equals an Annual Income of " + "$" + "<%= (a.pay)*12 %>");
+	$('input[id=milTotal]').val("<%= (a.pay)*12 %>");
+<% end %>

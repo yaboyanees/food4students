@@ -1,6 +1,6 @@
 class AdultsController < ApplicationController
   before_action :set_adult, only: [:edit, :update]
-  
+
   def edit
   end
   

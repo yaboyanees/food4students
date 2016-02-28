@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20160223205503) do
     t.integer  "ali"
     t.integer  "se"
     t.integer  "mil"
+    t.integer  "paygrade_id"
     t.integer  "other"
     t.integer  "household_id"
     t.datetime "created_at",   null: false

@@ -10,6 +10,7 @@ class CreateAdults < ActiveRecord::Migration
 	  t.integer  :ali
 	  t.integer  :se
 	  t.integer  :mil
+	  t.integer	 :paygrade_id
 	  t.integer  :other
 	  t.integer  :household_id
 	  

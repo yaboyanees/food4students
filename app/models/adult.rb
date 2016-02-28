@@ -1,6 +1,9 @@
 class Adult < ActiveRecord::Base
 	#M-1 relationship with household
 	belongs_to :household
+	
+	#1-M relationship with paygrades
+	has_many :paygrades
 
 	#titleize each adult name
 	def adultName

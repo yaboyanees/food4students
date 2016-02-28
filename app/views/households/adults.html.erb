@@ -1,5 +1,22 @@
 <div id="myContainer">
 	<div class="section" id="section4">
+		
+		<!-- Military Calculator Form -->
+		<div class="milCalc" style="display:none;">
+			<h3>
+				Thank you for your family's Service and Sacrifice!<br />Please Select Current Rank and 
+				Years of Service.
+			</h3>
+			<h4><span id="milResult"><span></h4>
+			<%= form_tag(households_path, :remote => true, :method => "get", id: "search-form", :validate=>true) do %>
+				<%= select_tag :rank, options_for_select(@ranks, params[:rank]), :prompt => 'Current Rank', class: "styled-select slate" %>
+				<%= select_tag :year, options_for_select(@years, params[:year]), :prompt => 'Years of Service', class: "styled-select slate" %>
+			<% end %>
+					
+			<br /><br /><br /><br /><a id="moveBack" class="nextBtnBlk" href="#1/3">Next</a> 
+		</div>
+
+
 		<%= form_for(@adult) do |a| %>
 			<% if @adults.present? %>
 		
@@ -108,7 +125,9 @@
 			</div>		
 				
 		<% end %>
+			
 	</div>
+	
 	<div id="btmProgress">
 		<%= render 'households/adult/progress'%>
 	</div>
@@ -120,6 +139,7 @@
 		$.fn.fullpage.moveSlideRight();
 	});	
 
+
 	$("#incomeBreakdown").click(function(){
 		$.fn.fullpage.moveSlideRight();
 	});	
@@ -128,6 +148,11 @@
 		$(".altForm").show();
 		$(".originalAview").hide();
 	});	
+
+	$("#moveBack").click(function(){
+		$(".milCalc").hide();
+		$(".mil").show();
+	});		
 	
 	$(".noReceiveMoney").click(function(){
 		$(".receiveMoney").hide();
@@ -140,8 +165,16 @@
 	});		
 
 	$("#yesMil").click(function(){
+		$.fn.fullpage.silentMoveTo('1');
+		$(".originalAview").hide();
+		$(".adultExist").hide();
 		$(".mil").hide();
 		$(".milCalc").show();
 	});
+	
+	$("select#year").change(function(){
+		$("#search-form").submit()
+	});	
 
+	
 </script>
