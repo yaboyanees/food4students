@@ -13,7 +13,7 @@
 				<%= select_tag :year, options_for_select(@years, params[:year]), :prompt => 'Years of Service', class: "styled-select slate" %>
 			<% end %>
 					
-			<br /><br /><br /><br /><a id="moveBack" class="nextBtnBlk" href="#1/3">Next</a> 
+			<br /><br /><br /><br /><a id="moveBack" class="nextBtnBlk" href="#back2money">Next</a> 
 		</div>
 
 
@@ -85,7 +85,7 @@
 				
 			<% end %>
 			
-				<div class="slide">
+				<div class="slide" id="back2money">
 					<div class="qArea">
 						<%= render 'households/adult/money', a: a %>
 					</div>

@@ -23,7 +23,13 @@
     <div class="group">      
     	<%= c.text_field :name, :id=>"cName", :size=>"25", :maxlength=>"35", :autofocus => true, :onkeyup=> "catchName()" %>
     	<span class="bar"></span>
-    	<label>Kids Full Name</label><br/><br/><br/>
+		  <p id="errorName">
+			<img src="http://emojipedia-us.s3.amazonaws.com/cache/2f/3c/2f3c03f9e546e4d9652560347210ba9d.png" style="width:20px;height:20px;">We won't be able to provide benefits for casper
+		  </p>
+		  <p id="successName">
+			<img src="http://emojipedia-us.s3.amazonaws.com/cache/f8/69/f869f6512b0d7187f4e475fc9aa7f250.png" style="width:20px;height:20px;">Must be a great kid!
+		  </p>
+    	<label>Kids Full Name</label><br/><br/>
     	<a id="moveSlideRight" class="nextBtnSS" href="#1/2">Next</a>
 	</div>
 
@@ -57,4 +63,15 @@
 		el12.innerHTML = fname;
 	}
 
+    $("input[id='cName']").blur(function(e) {
+        if ($.trim($(this).val()) == '') {
+            $('#errorName').show();
+            $('#successName').hide();
+        }
+        else {
+            $('#errorName').hide();
+            $('#successName').show();
+        }
+    });
+    
 </script>

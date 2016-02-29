@@ -13,7 +13,7 @@
   <!-- Link to open the modal -->
   <p class="emojiHelp"><a href="#sModal" rel="modal:open"><%= image_tag('confused.png') %></a></p>
   
-<h3>Before we can help your family, please agree that you will be truthful with our family.</h3>
+<h3>Please agree that you will be truthful with our family.</h3>
 <h4>
 	I certify (promise) that all information on this application is true and that all income is reported. 
 	I understand that this information is given in connection with the receipt of Federal funds, and that school 
@@ -29,6 +29,12 @@
     <div class="group">      
       <%= f.text_field :signature, class:"fancy", :autofocus => true %>
       <span class="bar"></span>
+      <p id="errorName">
+		<img src="http://emojipedia-us.s3.amazonaws.com/cache/2f/3c/2f3c03f9e546e4d9652560347210ba9d.png" style="width:20px;height:20px;">This prohibis us from providing benefits
+	  </p>
+	  <p id="successName">
+	  	<img src="http://emojipedia-us.s3.amazonaws.com/cache/f8/69/f869f6512b0d7187f4e475fc9aa7f250.png" style="width:20px;height:20px;">Great!
+	  </p>
       <label>Full Name</label><br/><br/>
       <a id="moveSlideRight" class="nextBtnSign" href="#1/2">I Understand</a>
     </div>
@@ -40,4 +46,16 @@
         $(".typeSig").show();
         $("#signOption").hide();
     });
+    
+    $("input[id='household_signature']").blur(function(e) {
+        if ($.trim($(this).val()) == '') {
+            $('#errorName').show();
+            $('#successName').hide();
+        }
+        else {
+            $('#errorName').hide();
+            $('#successName').show();
+        }
+    });
+    
 </script>

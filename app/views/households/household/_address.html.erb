@@ -30,8 +30,29 @@
 	<div class="group">      
 		<%= f.text_field :zip, :size=>"5", :maxlength=>"5", :required => true %>
 		<span class="bar"></span>
+		<p id="errorName">
+			<img src="http://emojipedia-us.s3.amazonaws.com/cache/2f/3c/2f3c03f9e546e4d9652560347210ba9d.png" style="width:20px;height:20px;">We need your zipcode to route your packet
+		</p>
+		<p id="successName">
+			<img src="http://emojipedia-us.s3.amazonaws.com/cache/f8/69/f869f6512b0d7187f4e475fc9aa7f250.png" style="width:20px;height:20px;">Thanks!
+		</p>
 		<label>Zip Code</label>
 	</div>
 	
 	<a id="moveSlideRight" class="nextBtn" href="#1/1">Next</a>
 </div>
+
+<script>
+
+    $("input[id='household_zip']").blur(function(e) {
+        if ($.trim($(this).val()) == '') {
+            $('#errorName').show();
+            $('#successName').hide();
+        }
+        else {
+            $('#errorName').hide();
+            $('#successName').show();
+        }
+    });
+
+</script>

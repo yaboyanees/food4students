@@ -45,6 +45,20 @@
 	}
 }
 
+
+#errorName, #successName{
+	display:none;
+	background-color: #fff;
+	color: #333;
+	font-size: 13px;
+	padding:8px 5px 10px 5px;
+	width: 41%;
+	p{
+		display:inline;
+		margin: 0;
+	}
+}
+
 .bubble-lft, .bubble-lft-ld, .bubble-rt, .bubble-rt-ld, .bubble-done {
 	text-align: left;
 	font-size: 28px;
