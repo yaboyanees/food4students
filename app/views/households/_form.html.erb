@@ -20,6 +20,7 @@
 <p id="div4" style="display:block;">
 	<%= f.text_field :filler_name, :id=>"name", :size=>"10", :maxlength=>"25", :placeholder=>"First and Last", :required => true, :autofocus=>true, :onkeyup=> "writeIt()" %>
 	<a class="sendBtn">Send</a>
+	<label class="splashName">First & Last Name</label>
 </p>
 <a id="getStarted" class="ctaButton" style="display:none;">Get Started</a>
 
@@ -32,6 +33,10 @@
         $("#div4").hide();
         $("#getStarted").show();
     });
+    
+    $("#name").click(function(){
+    	$(".splashName").fadeIn(750);
+	});
 
 	$("#getStarted").click(function(){
         $(".splashPage").hide();

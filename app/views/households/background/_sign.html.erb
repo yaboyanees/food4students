@@ -27,7 +27,7 @@
 
 <div class="typeSig" style= "display:none;">
     <div class="group">      
-      <%= f.text_field :signature, class:"fancy", :autofocus => true %>
+      <%= f.text_field :signature, class:"fancy" %>
       <span class="bar"></span>
       <p id="errorName">
 		<img src="http://emojipedia-us.s3.amazonaws.com/cache/2f/3c/2f3c03f9e546e4d9652560347210ba9d.png" style="width:20px;height:20px;">This prohibis us from providing benefits
@@ -47,7 +47,7 @@
         $("#signOption").hide();
     });
     
-    $("input[id='household_signature']").blur(function(e) {
+    $("input[id='household_signature']").keyup(function(e) {
         if ($.trim($(this).val()) == '') {
             $('#errorName').show();
             $('#successName').hide();

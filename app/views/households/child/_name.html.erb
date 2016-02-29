@@ -21,7 +21,7 @@
 <br/><br/><h3>Please provide us with this child's Full Name to include Middle if they have one</h3>
 
     <div class="group">      
-    	<%= c.text_field :name, :id=>"cName", :size=>"25", :maxlength=>"35", :autofocus => true, :onkeyup=> "catchName()" %>
+    	<%= c.text_field :name, :id=>"cName", :size=>"25", :maxlength=>"35", :onkeyup=> "catchName()" %>
     	<span class="bar"></span>
 		  <p id="errorName">
 			<img src="http://emojipedia-us.s3.amazonaws.com/cache/2f/3c/2f3c03f9e546e4d9652560347210ba9d.png" style="width:20px;height:20px;">We won't be able to provide benefits for casper
@@ -63,7 +63,7 @@
 		el12.innerHTML = fname;
 	}
 
-    $("input[id='cName']").blur(function(e) {
+    $("input[id='cName']").keyup(function(e) {
         if ($.trim($(this).val()) == '') {
             $('#errorName').show();
             $('#successName').hide();

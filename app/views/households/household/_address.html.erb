@@ -44,7 +44,7 @@
 
 <script>
 
-    $("input[id='household_zip']").blur(function(e) {
+    $("input[id='household_zip']").keyup(function(e) {
         if ($.trim($(this).val()) == '') {
             $('#errorName').show();
             $('#successName').hide();

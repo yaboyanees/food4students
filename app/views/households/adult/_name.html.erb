@@ -20,7 +20,7 @@
 <h3>Please provide us with this adult's First & Last Name</h3>
 
     <div class="group">      
-    	<%= a.text_field :name, :id=>"aName", :size=>"25", :maxlength=>"35", :autofocus => true, :onkeyup=> "catchaName()" %>
+    	<%= a.text_field :name, :id=>"aName", :size=>"25", :maxlength=>"35", :onkeyup=> "catchaName()" %>
     	<span class="bar"></span>
       <p id="errorName">
 		<img src="http://emojipedia-us.s3.amazonaws.com/cache/2f/3c/2f3c03f9e546e4d9652560347210ba9d.png" style="width:20px;height:20px;">Help us put a name to a face
@@ -62,7 +62,7 @@
 		el12.innerHTML = fname;
 	}
 	
-    $("input[id='adult_name']").blur(function(e) {
+    $("input[id='adult_name']").keyup(function(e) {
         if ($.trim($(this).val()) == '') {
             $('#errorName').show();
             $('#successName').hide();
