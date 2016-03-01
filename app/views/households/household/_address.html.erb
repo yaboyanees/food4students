@@ -39,7 +39,7 @@
 		<label>Zip Code</label>
 	</div>
 	
-	<a id="moveSlideRight" class="nextBtn" href="#1/1">Next</a>
+	<a id="moveZipRight" class="nextBtnBlk">Next</a>
 </div>
 
 <script>
@@ -54,5 +54,18 @@
             $('#successName').show();
         }
     });
+    
+	$('#moveZipRight').click(function(e){
+		if ($.trim($("input[id='household_zip']").val()) == '') {
+			e.preventDefault();
+			$('#errorName').show();
+            $('#successName').hide();			
+		}
+		else {
+			$('#errorName').hide();
+            $('#successName').show();
+            $.fn.fullpage.moveSlideRight();
+		}
+	});		
 
 </script>

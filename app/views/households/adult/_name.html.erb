@@ -30,7 +30,7 @@
 	  </p>
     	<label>Full Name</label><br/><br/>    	
 	</div>
-	<a id="moveSlideRight" class="nextBtnBlk" href="#1/2">Next</a>
+	<a id="moveNMRight" class="nextBtnBlk" href="#1/2">Next</a>
 	
 <script>
 
@@ -72,5 +72,18 @@
             $('#successName').show();
         }
     });
+    
+	$('#moveNMRight').click(function(e){
+		if ($.trim($("input[id='adult_name']").val()) == '') {
+			e.preventDefault();
+			$('#errorName').show();
+            $('#successName').hide();			
+		}
+		else {
+			$('#errorName').hide();
+            $('#successName').show();
+            $.fn.fullpage.moveSlideRight();
+		}
+	});	
 
 </script>
